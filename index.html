@@ -3,190 +3,334 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>⚔️ Герой-Клікер</title>
+<title>🐸 Крякалка Восьмої Школи</title>
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; -webkit-tap-highlight-color: transparent; }
 body { 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(180deg, #0d1b2a 0%, #1b2838 50%, #2d1b4e 100%);
   min-height: 100vh; display: flex; justify-content: center; align-items: center;
   color: #fff; overflow: hidden;
 }
-.game { width: 100%; max-width: 400px; padding: 10px; text-align: center; position: relative; }
+.game { width: 100%; max-width: 420px; padding: 8px; text-align: center; position: relative; }
 
 /* Header */
-.header { display: flex; justify-content: space-between; align-items: center; padding: 8px 4px; margin-bottom: 6px; }
-.res { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 6px 14px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 5px; }
-.res .icon { font-size: 16px; }
-.level-badge { background: rgba(255,215,0,0.2); border: 1px solid rgba(255,215,0,0.3); border-radius: 12px; padding: 6px 14px; font-size: 13px; font-weight: 600; color: #ffd700; }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 6px 4px; margin-bottom: 4px; }
+.res { background: rgba(255,255,255,0.08); border-radius: 14px; padding: 5px 12px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+.res .icon { font-size: 15px; }
+.level-badge { background: rgba(255,215,0,0.15); border: 1px solid rgba(255,215,0,0.25); border-radius: 14px; padding: 5px 12px; font-size: 12px; font-weight: 600; color: #ffd700; white-space: nowrap; }
+
+/* Title */
+.title-row { 
+  background: rgba(0,0,0,0.3); border-radius: 16px; padding: 6px; margin-bottom: 6px;
+  border: 1px solid rgba(255,215,0,0.1);
+}
+.title-row .hero-name { font-size: 14px; font-weight: 700; color: #4fc3f7; }
+.title-row .subtitle { font-size: 10px; color: rgba(255,255,255,0.4); }
+
+/* Coin display */
+.coin-display {
+  background: rgba(0,0,0,0.4); border-radius: 16px; padding: 12px 8px; margin-bottom: 6px;
+  border: 1px solid rgba(255,215,0,0.1);
+  position: relative; overflow: hidden;
+}
+.coin-big {
+  font-size: 32px; font-weight: 800;
+  background: linear-gradient(180deg, #ffd700, #ff8c00);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.coin-unit { font-size: 16px; -webkit-text-fill-color: #ffd700; }
+.coin-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+.coin-earned { 
+  font-size: 13px; color: #4caf50; font-weight: 600; 
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  animation: coinPop 0.5s ease-out;
+}
+@keyframes coinPop {
+  0% { opacity: 0; transform: translateY(10px) scale(0.5); }
+  50% { opacity: 1; transform: translateY(-5px) scale(1.2); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
 
 /* Enemy Area */
 .enemy-area { 
-  background: rgba(0,0,0,0.3); border-radius: 20px; padding: 20px 10px; margin-bottom: 8px;
-  border: 1px solid rgba(255,255,255,0.05); position: relative; min-height: 200px;
+  background: rgba(0,0,0,0.4); border-radius: 20px; padding: 14px 10px; margin-bottom: 6px;
+  border: 1px solid rgba(255,255,255,0.05); position: relative; min-height: 175px;
 }
-.enemy-name { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #ff6b6b; }
-.enemy-hp-bar { width: 100%; height: 16px; background: rgba(255,0,0,0.2); border-radius: 10px; overflow: hidden; margin-bottom: 4px; }
-.enemy-hp-fill { height: 100%; background: linear-gradient(90deg, #ff4444, #ff6b6b); border-radius: 10px; transition: width 0.2s; }
-.enemy-hp-text { font-size: 11px; color: rgba(255,255,255,0.6); margin-bottom: 10px; }
-.enemy-sprite { font-size: 64px; margin: 8px 0; cursor: pointer; transition: transform 0.1s; display: inline-block; }
-.enemy-sprite:active { transform: scale(1.2); }
+.enemy-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.enemy-name { font-size: 14px; font-weight: 700; }
+.enemy-level-badge { font-size: 10px; background: rgba(255,0,0,0.2); color: #ff6b6b; padding: 2px 10px; border-radius: 20px; }
+.enemy-hp-bar { width: 100%; height: 14px; background: rgba(255,0,0,0.15); border-radius: 10px; overflow: hidden; margin-bottom: 3px; }
+.enemy-hp-fill { height: 100%; background: linear-gradient(90deg, #ff1744, #ff5252); border-radius: 10px; transition: width 0.15s; }
+.enemy-hp-text { font-size: 10px; color: rgba(255,255,255,0.5); margin-bottom: 6px; }
+.enemy-sprite { font-size: 56px; cursor: pointer; transition: transform 0.08s; display: inline-block; }
+.enemy-sprite:active { transform: scale(1.25); }
+
+/* Stats row */
+.stats-row { display: flex; gap: 4px; margin-bottom: 6px; }
+.stat-box { 
+  flex: 1; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 6px 4px;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.stat-val { font-size: 14px; font-weight: 700; }
+.stat-label { font-size: 9px; color: rgba(255,255,255,0.4); }
+
+/* Perks/Upgrades */
+.shop-title { 
+  font-size: 13px; font-weight: 600; margin: 4px 0; color: #ffd700;
+  background: rgba(255,215,0,0.05); border-radius: 10px; padding: 4px;
+}
+.shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: 6px; }
+.shop-item {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 8px 5px; cursor: pointer; transition: all 0.15s;
+}
+.shop-item:active { transform: scale(0.95); background: rgba(255,255,255,0.1); }
+.shop-item .name { font-size: 13px; font-weight: 600; }
+.shop-item .desc { font-size: 9px; color: rgba(255,255,255,0.45); margin: 2px 0; }
+.shop-item .price { font-size: 12px; color: #ffd700; font-weight: 600; }
+.shop-item .level { font-size: 9px; color: rgba(255,255,255,0.25); }
+.shop-item.locked { opacity: 0.4; }
 
 /* Damage popup */
 .dmg-popup {
-  position: fixed; pointer-events: none; font-size: 24px; font-weight: 800;
-  color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.5);
-  animation: floatUp 0.8s ease-out forwards; z-index: 100;
+  position: fixed; pointer-events: none; font-weight: 800;
+  text-shadow: 0 0 10px rgba(255,255,255,0.3);
+  animation: floatUp 0.7s ease-out forwards; z-index: 100;
 }
 @keyframes floatUp {
   0% { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(-80px) scale(1.3); }
+  100% { opacity: 0; transform: translateY(-70px) scale(1.2); }
 }
 
-/* Stats */
-.stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4px; margin-bottom: 8px; }
-.stat-box { background: rgba(255,255,255,0.06); border-radius: 12px; padding: 8px 4px; }
-.stat-val { font-size: 18px; font-weight: 700; }
-.stat-label { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px; }
-
-/* Shop */
-.shop-title { font-size: 14px; font-weight: 600; margin: 6px 0; color: #ffd700; }
-.shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
-.shop-item {
-  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px; padding: 10px 6px; cursor: pointer; transition: all 0.2s;
-}
-.shop-item:active { transform: scale(0.95); background: rgba(255,255,255,0.12); }
-.shop-item .name { font-size: 12px; font-weight: 600; }
-.shop-item .desc { font-size: 10px; color: rgba(255,255,255,0.5); margin: 2px 0; }
-.shop-item .price { font-size: 12px; color: #ffd700; font-weight: 600; }
-.shop-item .level { font-size: 10px; color: rgba(255,255,255,0.3); }
-.shop-item.locked { opacity: 0.5; }
-
-/* Floating coins */
 .coin-float {
-  position: fixed; pointer-events: none; font-size: 18px;
+  position: fixed; pointer-events: none;
   animation: coinFly 0.6s ease-out forwards; z-index: 99;
 }
 @keyframes coinFly {
   0% { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(-40px) scale(0.5); }
+  100% { opacity: 0; transform: translateY(-50px) scale(0.6); }
 }
 
-/* Kill effect */
 @keyframes enemyDie {
   0% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.5); opacity: 0.5; }
   100% { transform: scale(0); opacity: 0; }
 }
-.enemy-die { animation: enemyDie 0.4s ease-out forwards; }
+.enemy-die { animation: enemyDie 0.35s ease-out forwards; }
+
+/* Achievements popup */
+.ach-popup {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #1a1a2e, #2d1b4e);
+  border: 2px solid #ffd700; border-radius: 20px; padding: 20px 30px;
+  text-align: center; z-index: 200;
+  animation: achPop 0.4s ease-out;
+}
+@keyframes achPop {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  60% { transform: translate(-50%, -50%) scale(1.1); }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+.ach-popup .ach-icon { font-size: 48px; }
+.ach-popup .ach-title { font-size: 18px; font-weight: 700; color: #ffd700; margin: 6px 0; }
+.ach-popup .ach-desc { font-size: 13px; color: rgba(255,255,255,0.7); }
+.ach-overlay { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.6); z-index: 199; }
+
+/* Level progress */
+.level-progress { 
+  background: rgba(0,0,0,0.3); border-radius: 10px; padding: 4px 8px; margin-bottom: 4px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.lvl-progress-bar { flex: 1; height: 6px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; margin: 0 8px; }
+.lvl-progress-fill { height: 100%; background: linear-gradient(90deg, #4fc3f7, #29b6f6); border-radius: 4px; transition: width 0.3s; }
+.lvl-info { font-size: 10px; color: rgba(255,255,255,0.5); white-space: nowrap; }
+.lvl-reward { font-size: 10px; color: #ffd700; font-weight: 600; white-space: nowrap; }
 </style>
 </head>
 <body>
 <div class="game" id="app">
+  <!-- Title -->
+  <div class="title-row">
+    <div class="hero-name">🐸 Крякалка Восьмої Школи</div>
+    <div class="subtitle">Герой Ігорьоша бореться зі злом!</div>
+  </div>
+
+  <!-- Coin Display -->
+  <div class="coin-display" id="coinDisplay">
+    <div><span class="coin-big" id="coinBig">0</span><span class="coin-unit" id="coinUnit"></span></div>
+    <div class="coin-sub" id="coinSub">🔥 +<span id="coinPerSec">0</span> монет/сек</div>
+    <div class="coin-earned" id="coinEarned" style="display:none">+0 🪙</div>
+  </div>
+
+  <!-- Header with level & kills -->
   <div class="header">
-    <div class="res"><span class="icon">🪙</span><span id="goldDisplay">0</span></div>
+    <div class="res"><span class="icon">💀</span>Вбито: <span id="killsDisplay">0</span></div>
     <div class="level-badge">🔰 Рівень <span id="playerLevel">1</span></div>
-    <div class="res"><span class="icon">💀</span><span id="killsDisplay">0</span></div>
+    <div class="res"><span class="icon">🏆</span>Рекорд: <span id="recordDisplay">0</span></div>
   </div>
 
+  <!-- Level Progress -->
+  <div class="level-progress">
+    <span class="lvl-info" id="lvlInfo">До наступного: 0</span>
+    <div class="lvl-progress-bar"><div class="lvl-progress-fill" id="lvlProgressFill" style="width:0%"></div></div>
+    <span class="lvl-reward" id="lvlReward">🎁 +0</span>
+  </div>
+
+  <!-- Enemy Area -->
   <div class="enemy-area" id="enemyArea">
-    <div class="enemy-name" id="enemyName">🍄 Гриб-Слизень</div>
+    <div class="enemy-header">
+      <span class="enemy-name" id="enemyName">🦹 Хуліган</span>
+      <span class="enemy-level-badge" id="enemyLevelBadge">⭐ 1 рівень</span>
+    </div>
     <div class="enemy-hp-bar"><div class="enemy-hp-fill" id="enemyHpFill" style="width:100%"></div></div>
-    <div class="enemy-hp-text" id="enemyHpText">100/100</div>
-    <div class="enemy-sprite" id="enemySprite">🍄</div>
+    <div class="enemy-hp-text" id="enemyHpText">100/100❤️</div>
+    <div class="enemy-sprite" id="enemySprite">🦹</div>
   </div>
 
-  <div class="stats">
-    <div class="stat-box"><div class="stat-val" id="dmgDisplay">1</div><div class="stat-label">⚔️ Атака</div></div>
-    <div class="stat-box"><div class="stat-val" id="clickPower">1</div><div class="stat-label">🖱 За клік</div></div>
-    <div class="stat-box"><div class="stat-val" id="dpsDisplay">1</div><div class="stat-label">⚡ DPS</div></div>
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-val" id="dmgDisplay">1</div><div class="stat-label">⚔️ Сила</div></div>
+    <div class="stat-box"><div class="stat-val" id="clickDisplay">1</div><div class="stat-label">👊 Клік</div></div>
+    <div class="stat-box"><div class="stat-val" id="critDisplay">5%</div><div class="stat-label">💥 Крит</div></div>
+    <div class="stat-box"><div class="stat-val" id="dpsDisplay">1.0</div><div class="stat-label">⚡ DPS</div></div>
   </div>
 
-  <div class="shop-title">🏪 Крамниця</div>
+  <!-- Shop -->
+  <div class="shop-title">🏪 Крамниця Ігорьоші</div>
   <div class="shop-grid" id="shopGrid"></div>
 </div>
 
 <script>
-// ========== GAME DATA ==========
-const ENEMIES = [
-  { name: '🍄 Гриб-Слизень', hp: 100, gold: 10, sprite: '🍄', level: 1 },
-  { name: '🐺 Лісовий Вовк', hp: 250, gold: 25, sprite: '🐺', level: 3 },
-  { name: '🦴 Скелетон', hp: 500, gold: 50, sprite: '💀', level: 5 },
-  { name: '🦎 Ящер-Воїн', hp: 1200, gold: 100, sprite: '🦎', level: 8 },
-  { name: '👹 Огр', hp: 3000, gold: 200, sprite: '👹', level: 12 },
-  { name: '🐉 Дракон', hp: 8000, gold: 500, sprite: '🐉', level: 20 },
-  { name: '👾 Темний Лорд', hp: 20000, gold: 1200, sprite: '👾', level: 35 },
-  { name: '🌀 Хаос-Бос', hp: 50000, gold: 3000, sprite: '🌀', level: 50 },
+// ========== BIG NUMBER FORMAT ==========
+function formatCoin(n) {
+  if (n >= 1e12) return (n / 1e12).toFixed(1) + ' трлн';
+  if (n >= 1e9) return (n / 1e9).toFixed(1) + ' млрд';
+  if (n >= 1e6) return (n / 1e6).toFixed(1) + ' млн';
+  if (n >= 1000) return (n / 1000).toFixed(1) + ' тис';
+  return Math.floor(n).toString();
+}
+
+function formatShort(n) {
+  if (n >= 1e12) return (n / 1e12).toFixed(2) + 'T';
+  if (n >= 1e9) return (n / 1e9).toFixed(2) + 'B';
+  if (n >= 1e6) return (n / 1e6).toFixed(2) + 'M';
+  if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+  return Math.floor(n).toString();
+}
+
+// ========== VILLAINS ==========
+const VILLAINS = [
+  { name: '🦹 Хуліган', hp: 50, sprite: '🦹' },
+  { name: '👊 Забіяка', hp: 120, sprite: '👊' },
+  { name: '📱 Телефонний маньяк', hp: 300, sprite: '📱' },
+  { name: '🎒 Шкільний задирака', hp: 700, sprite: '🎒' },
+  { name: '🏏 Хуліган з бітою', hp: 1500, sprite: '🏏' },
+  { name: '🗡️ Гоп-стопник', hp: 3500, sprite: '🗡️' },
+  { name: '🔥 Піроман', hp: 8000, sprite: '🔥' },
+  { name: '💀 Байкер-злодій', hp: 18000, sprite: '💀' },
+  { name: '🧪 Божевільний вчитель', hp: 40000, sprite: '🧪' },
+  { name: '🤖 Кібер-хуліган', hp: 90000, sprite: '🤖' },
+  { name: '👾 Ігровий бос', hp: 200000, sprite: '👾' },
+  { name: '🐉 Директор-дракон', hp: 500000, sprite: '🐉' },
+  { name: '👑 Король школи', hp: 1200000, sprite: '👑' },
+  { name: '🌑 Тіньовий завуч', hp: 3000000, sprite: '🌑' },
+  { name: '🌀 Хаос-директор', hp: 8000000, sprite: '🌀' },
+  { name: '☠️ Останній іспит', hp: 20000000, sprite: '☠️' },
+  { name: '💎 Фінальний бос', hp: 50000000, sprite: '💎' },
 ];
 
+// ========== UPGRADES ==========
 const UPGRADES = [
-  { id: 'atk', name: '⚔️ Меч', desc: 'Атака +1', baseCost: 10, costMult: 1.4, maxLvl: 50, effect: () => { g.playerDmg++; } },
-  { id: 'click', name: '🖱️ Рука', desc: 'Клік +1', baseCost: 15, costMult: 1.5, maxLvl: 30, effect: () => { g.clickDmg++; } },
-  { id: 'crit', name: '💥 Крит', desc: 'Шанс криту +2%', baseCost: 50, costMult: 1.6, maxLvl: 25, effect: () => { g.critChance = Math.min(g.critChance + 0.02, 0.8); } },
-  { id: 'gold', name: '🪙 Золото', desc: 'Золото +20%', baseCost: 75, costMult: 1.7, maxLvl: 20, effect: () => { g.goldMult *= 1.2; } },
-  { id: 'aspd', name: '⏱️ Швидкість', desc: 'Авто-атака +0.5/c', baseCost: 100, costMult: 1.8, maxLvl: 20, effect: () => { g.autoSpeed += 0.5; } },
-  { id: 'hp', name: '❤️ Досвід', desc: 'Боси швидше', baseCost: 200, costMult: 2, maxLvl: 10, effect: () => { g.expMult *= 1.15; } },
+  { id: 'atk', name: '🗡️ Кулак', desc: 'Сила +1', baseCost: 10, costMult: 1.35, maxLvl: 80 },
+  { id: 'click', name: '🦶 Підніжка', desc: 'Клік +2', baseCost: 25, costMult: 1.45, maxLvl: 50 },
+  { id: 'crit', name: '🎯 Точний удар', desc: 'Крит +2%', baseCost: 80, costMult: 1.5, maxLvl: 35 },
+  { id: 'gold', name: '🪙 Кишенькові', desc: 'Монети +25%', baseCost: 150, costMult: 1.6, maxLvl: 25 },
+  { id: 'aspd', name: '⚡ Прискорення', desc: 'Авто +0.5/сек', baseCost: 300, costMult: 1.7, maxLvl: 25 },
+  { id: 'combo', name: '💫 Комбо', desc: 'Шанс подвійної атаки +2%', baseCost: 500, costMult: 1.8, maxLvl: 20 },
+  { id: 'mega', name: '🌟 Мега-удар', desc: 'Крит х5 замість х3', baseCost: 2000, costMult: 2, maxLvl: 10 },
+  { id: 'supergold', name: '💰 Скарбниця', desc: 'Монети x2', baseCost: 10000, costMult: 2.5, maxLvl: 8 },
 ];
 
-const SPRITES = ['🍄','🐺','💀','🦎','👹','🐉','👾','🌀'];
+// ========== LEVEL SYSTEM ==========
+function getLevelReq(lvl) {
+  return Math.floor(10 * Math.pow(1.5, lvl - 1));
+}
+
+function getLevelReward(lvl) {
+  return Math.floor(50 * Math.pow(1.6, lvl - 1));
+}
 
 // ========== SAVE ==========
 let g;
 
 function defaultGame() {
   return {
-    gold: 0, kills: 0, playerLevel: 1, totalDmg: 0,
-    playerDmg: 1, clickDmg: 1, critChance: 0.05,
-    goldMult: 1, autoSpeed: 1, expMult: 1,
-    upgrades: {}, enemyIdx: 0, enemyHp: 100, enemyMaxHp: 100,
-    highScore: 0,
+    coins: 0, kills: 0, playerLevel: 1, totalDmg: 0, bestKills: 0,
+    playerDmg: 1, clickDmg: 2, critChance: 0.05, critMult: 3,
+    goldMult: 1, autoSpeed: 1, comboChance: 0,
+    megaCrit: false,
+    upgrades: {},
+    enemyIdx: 0, enemyHp: 50, enemyMaxHp: 50,
+    levelProgress: 0,
   };
 }
 
 function loadGame() {
   try {
-    const d = JSON.parse(localStorage.getItem('heroClicker'));
-    if (d && typeof d.gold === 'number') { g = d; return; }
+    const d = JSON.parse(localStorage.getItem('kvSchool'));
+    if (d && typeof d.coins === 'number') { g = d; return; }
   } catch(e) {}
   g = defaultGame();
 }
 
 function saveGame() {
-  try { localStorage.setItem('heroClicker', JSON.stringify(g)); } catch(e) {}
+  try { localStorage.setItem('kvSchool', JSON.stringify(g)); } catch(e) {}
 }
 
 loadGame();
 
 // ========== DOM ==========
 const $ = id => document.getElementById(id);
-const goldDisplay = $('goldDisplay');
+const coinBig = $('coinBig');
+const coinUnit = $('coinUnit');
+const coinSub = $('coinSub');
+const coinEarned = $('coinEarned');
 const killsDisplay = $('killsDisplay');
 const playerLevel = $('playerLevel');
+const recordDisplay = $('recordDisplay');
+const lvlInfo = $('lvlInfo');
+const lvlProgressFill = $('lvlProgressFill');
+const lvlReward = $('lvlReward');
 const enemyName = $('enemyName');
+const enemyLevelBadge = $('enemyLevelBadge');
 const enemyHpFill = $('enemyHpFill');
 const enemyHpText = $('enemyHpText');
 const enemySprite = $('enemySprite');
 const dmgDisplay = $('dmgDisplay');
-const clickPower = $('clickPower');
+const clickDisplay = $('clickDisplay');
+const critDisplay = $('critDisplay');
 const dpsDisplay = $('dpsDisplay');
 const shopGrid = $('shopGrid');
-const enemyArea = $('enemyArea');
 
 // ========== ENEMY ==========
-function getEnemy() {
+function getVillain() {
   let idx = g.enemyIdx;
-  if (idx >= ENEMIES.length) idx = ENEMIES.length - 1;
-  return ENEMIES[idx];
+  if (idx >= VILLAINS.length) idx = VILLAINS.length - 1;
+  return VILLAINS[idx];
 }
 
 function spawnEnemy() {
-  const e = getEnemy();
-  const mult = 1 + (g.kills * 0.02);
-  g.enemyMaxHp = Math.floor(e.hp * mult);
+  const v = getVillain();
+  const mult = 1 + (g.kills * 0.03);
+  g.enemyMaxHp = Math.floor(v.hp * mult);
   g.enemyHp = g.enemyMaxHp;
-  enemyName.textContent = e.name;
-  enemySprite.textContent = e.sprite;
+  
+  const lvl = Math.floor(g.kills / 5) + 1;
+  enemyName.textContent = v.name;
+  enemyLevelBadge.textContent = '⭐ ' + lvl + ' рівень';
+  enemySprite.textContent = v.sprite;
   enemySprite.className = 'enemy-sprite';
   updateEnemyUI();
 }
@@ -194,89 +338,156 @@ function spawnEnemy() {
 function updateEnemyUI() {
   const pct = Math.max(0, (g.enemyHp / g.enemyMaxHp) * 100);
   enemyHpFill.style.width = pct + '%';
-  enemyHpText.textContent = Math.max(0, Math.ceil(g.enemyHp)) + '/' + g.enemyMaxHp;
+  enemyHpText.textContent = Math.max(0, Math.ceil(g.enemyHp)) + '/' + g.enemyMaxHp + '❤️';
 }
 
-function spawnDamagePopup(dmg, x, y, color) {
+function spawnDamagePopup(text, x, y, color, size) {
   const el = document.createElement('div');
   el.className = 'dmg-popup';
-  el.textContent = dmg > 0 ? '-' + Math.floor(dmg) : 'MISS';
+  el.textContent = text;
   if (color) el.style.color = color;
-  el.style.left = x + 'px';
-  el.style.top = y + 'px';
+  if (size) el.style.fontSize = size;
+  el.style.left = (x - 30) + 'px';
+  el.style.top = (y - 10) + 'px';
+  el.style.fontWeight = '800';
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 800);
+  setTimeout(() => el.remove(), 700);
 }
 
-function spawnCoinPopup(x, y, amt) {
+function spawnCoinFloat(x, y, amt) {
   const el = document.createElement('div');
   el.className = 'coin-float';
-  el.textContent = '🪙 +' + Math.floor(amt);
-  el.style.left = (x - 20) + 'px';
-  el.style.top = (y - 10) + 'px';
+  el.textContent = '🪙 +' + formatCoin(amt);
+  el.style.left = (x - 30) + 'px';
+  el.style.top = (y - 15) + 'px';
+  el.style.fontSize = '16px';
+  el.style.fontWeight = '700';
+  el.style.color = '#ffd700';
   document.body.appendChild(el);
   setTimeout(() => el.remove(), 600);
 }
 
-function dealDamage(dmg, isCrit) {
+function showEarned(amt) {
+  const el = $('coinEarned');
+  el.textContent = '+' + formatCoin(amt) + ' 🪙';
+  el.style.display = 'block';
+  el.style.animation = 'none';
+  void el.offsetWidth;
+  el.style.animation = 'coinPop 0.5s ease-out';
+  setTimeout(() => { el.style.display = 'none'; }, 2000);
+}
+
+// ========== LEVEL UPDATE ==========
+function updateLevel() {
+  const req = getLevelReq(g.playerLevel);
+  g.levelProgress = Math.min(g.kills, req);
+  
+  lvlInfo.textContent = g.kills + '/' + req;
+  lvlProgressFill.style.width = Math.min(100, (g.kills / req) * 100) + '%';
+  lvlReward.textContent = '🎁 +' + formatCoin(getLevelReward(g.playerLevel));
+  
+  // Check level up
+  if (g.kills >= req) {
+    g.playerLevel++;
+    const reward = getLevelReward(g.playerLevel - 1);
+    g.coins += reward;
+    
+    // Show achievement
+    showAchievement('🔰', 'Новий рівень!', 'Ігорьоша досяг ' + g.playerLevel + ' рівня! +' + formatCoin(reward) + ' 🪙');
+    
+    saveGame();
+    updateLevel();
+  }
+}
+
+function showAchievement(icon, title, desc) {
+  // Remove old
+  document.querySelectorAll('.ach-overlay, .ach-popup').forEach(el => el.remove());
+  
+  const overlay = document.createElement('div');
+  overlay.className = 'ach-overlay';
+  overlay.onclick = () => { overlay.remove(); popup.remove(); };
+  document.body.appendChild(overlay);
+  
+  const popup = document.createElement('div');
+  popup.className = 'ach-popup';
+  popup.innerHTML = `
+    <div class="ach-icon">${icon}</div>
+    <div class="ach-title">${title}</div>
+    <div class="ach-desc">${desc}</div>
+  `;
+  popup.onclick = () => { overlay.remove(); popup.remove(); };
+  document.body.appendChild(popup);
+  
+  setTimeout(() => { overlay.remove(); popup.remove(); }, 3000);
+}
+
+function dealDamage(dmg, isCrit, isCombo) {
+  let displayDmg = dmg;
   g.enemyHp -= dmg;
   g.totalDmg += dmg;
   
   const rect = enemySprite.getBoundingClientRect();
+  if (!rect || !rect.width) return;
   const x = rect.left + rect.width/2 - 20;
   const y = rect.top;
   
-  if (isCrit) spawnDamagePopup(dmg, x, y, '#ff4444');
-  else spawnDamagePopup(dmg, x, y, '#ffd700');
+  let text = '-' + formatCoin(dmg);
+  let color = '#ffd700';
+  let size = '20px';
+  
+  if (isCombo) { text = '💫 ' + text; color = '#7c4dff'; size = '22px'; }
+  if (isCrit && g.megaCrit) { text = '🌟 MEGA! ' + text; color = '#ff1744'; size = '28px'; }
+  else if (isCrit) { text = '💥 ' + text; color = '#ff1744'; size = '24px'; }
+  
+  spawnDamagePopup(text, x, y, color, size);
   
   if (g.enemyHp <= 0) {
-    const e = getEnemy();
-    const goldReward = Math.floor(e.gold * g.goldMult * (1 + g.kills * 0.01));
-    g.gold += goldReward;
+    const v = getVillain();
+    const lvl = Math.floor(g.kills / 5) + 1;
+    const reward = Math.floor((v.hp * 0.2 + 15) * g.goldMult * (1 + g.kills * 0.02));
+    g.coins += reward;
     g.kills++;
+    if (g.kills > g.bestKills) g.bestKills = g.kills;
     
-    // Level up every 10 kills
-    const newLevel = Math.floor(g.kills / 10) + 1;
-    if (newLevel > g.playerLevel) {
-      g.playerLevel = newLevel;
-    }
+    spawnCoinFloat(rect.left + rect.width/2 - 10, rect.top, reward);
+    showEarned(reward);
     
-    spawnCoinPopup(rect.left + rect.width/2, rect.top, goldReward);
     enemySprite.className = 'enemy-sprite enemy-die';
     
     setTimeout(() => {
-      // Check if should advance enemy
-      const maxIdx = Math.min(Math.floor(g.kills / 15), ENEMIES.length - 1);
+      const maxIdx = Math.min(Math.floor(g.kills / 10), VILLAINS.length - 1);
       if (g.enemyIdx < maxIdx) g.enemyIdx++;
       spawnEnemy();
-    }, 400);
+      updateLevel();
+    }, 350);
   }
   
   updateEnemyUI();
 }
 
 // ========== CLICK ==========
-enemySprite.addEventListener('click', (e) => {
+function doClick() {
   let dmg = g.clickDmg + g.playerDmg;
   let isCrit = Math.random() < g.critChance;
-  if (isCrit) dmg *= 3;
-  dealDamage(dmg, isCrit);
-});
+  let isCombo = Math.random() < g.comboChance;
+  
+  if (isCrit && g.megaCrit) dmg *= 5;
+  else if (isCrit) dmg *= 3;
+  if (isCombo) dmg *= 2;
+  
+  dealDamage(dmg, isCrit, isCombo);
+}
 
-enemySprite.addEventListener('touchstart', (e) => {
-  let dmg = g.clickDmg + g.playerDmg;
-  let isCrit = Math.random() < g.critChance;
-  if (isCrit) dmg *= 3;
-  dealDamage(dmg, isCrit);
-});
+enemySprite.addEventListener('click', doClick);
+enemySprite.addEventListener('touchstart', (e) => { e.preventDefault(); doClick(); });
 
 // ========== AUTO ATTACK ==========
 let lastAuto = 0;
 function autoAttack(timestamp) {
   if (!lastAuto) lastAuto = timestamp;
   if (timestamp - lastAuto >= 1000 / g.autoSpeed) {
-    const dmg = g.playerDmg;
-    dealDamage(dmg, false);
+    dealDamage(g.playerDmg, false, false);
     lastAuto = timestamp;
   }
   requestAnimationFrame(autoAttack);
@@ -290,7 +501,6 @@ function renderShop() {
     const lvl = g.upgrades[u.id] || 0;
     const cost = Math.floor(u.baseCost * Math.pow(u.costMult, lvl));
     const maxed = lvl >= u.maxLvl;
-    const canAfford = g.gold >= cost;
     
     const div = document.createElement('div');
     div.className = 'shop-item' + (maxed ? ' locked' : '');
@@ -298,41 +508,67 @@ function renderShop() {
     div.innerHTML = `
       <div class="name">${u.name}</div>
       <div class="desc">${u.desc}${maxed ? ' (MAX)' : ''}</div>
-      <div class="price">${maxed ? '✅ MAX' : '🪙 ' + cost}</div>
-      <div class="level">Рівень ${lvl}/${u.maxLvl}</div>
+      <div class="price">${maxed ? '✅ MAX' : '🪙 ' + formatCoin(cost)}</div>
+      <div class="level">${lvl}/${u.maxLvl}</div>
     `;
     
     if (!maxed) {
+      if (g.coins < cost) div.style.opacity = '0.4';
       div.addEventListener('click', () => {
-        if (g.gold >= cost) {
-          g.gold -= cost;
+        if (g.coins >= cost) {
+          g.coins -= cost;
           g.upgrades[u.id] = (g.upgrades[u.id] || 0) + 1;
-          u.effect();
+          
+          // Apply effect
+          switch(u.id) {
+            case 'atk': g.playerDmg++; break;
+            case 'click': g.clickDmg += 2; break;
+            case 'crit': g.critChance = Math.min(g.critChance + 0.02, 0.8); break;
+            case 'gold': g.goldMult *= 1.25; break;
+            case 'aspd': g.autoSpeed += 0.5; break;
+            case 'combo': g.comboChance = Math.min(g.comboChance + 0.02, 0.5); break;
+            case 'mega': g.megaCrit = true; break;
+            case 'supergold': g.goldMult *= 2; break;
+          }
+          
           saveGame();
           updateUI();
           renderShop();
         }
       });
-      if (!canAfford) div.style.opacity = '0.4';
     }
     
     shopGrid.appendChild(div);
   });
 }
 
+// ========== PASSIVE INCOME ==========
+setInterval(() => {
+  const passive = g.playerDmg * g.autoSpeed * 0.1;
+  if (passive > 0) {
+    g.coins += passive;
+    saveGame();
+    updateUI();
+  }
+}, 1000);
+
 // ========== UI UPDATE ==========
 function updateUI() {
-  goldDisplay.textContent = Math.floor(g.gold);
+  coinBig.textContent = formatCoin(g.coins);
+  
+  dmgDisplay.textContent = g.playerDmg;
+  clickDisplay.textContent = g.clickDmg + g.playerDmg;
+  critDisplay.textContent = Math.floor(g.critChance * 100) + '%';
+  dpsDisplay.textContent = g.autoSpeed.toFixed(1);
   killsDisplay.textContent = g.kills;
   playerLevel.textContent = g.playerLevel;
+  recordDisplay.textContent = g.bestKills;
   
-  const totalClick = g.clickDmg + g.playerDmg;
-  dmgDisplay.textContent = g.playerDmg;
-  clickPower.textContent = totalClick;
-  dpsDisplay.textContent = g.autoSpeed.toFixed(1);
+  const passive = (g.playerDmg * g.autoSpeed * 0.1).toFixed(1);
+  $('coinPerSec').textContent = formatCoin(passive);
 }
 
-// ========== TELEGRAM INTEGRATION ==========
+// ========== TELEGRAM ==========
 try {
   if (window.Telegram && Telegram.WebApp) {
     Telegram.WebApp.ready();
@@ -344,16 +580,16 @@ try {
 spawnEnemy();
 renderShop();
 updateUI();
+updateLevel();
 
-// Auto-save every 10 sec
+// Auto-save
 setInterval(saveGame, 10000);
-
-// Save on page hide
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) saveGame();
+  else { updateUI(); updateLevel(); }
 });
 
-console.log('⚔️ Hero Clicker loaded!');
+console.log('🐸 Крякалка Восьмої Школи завантажена!');
 </script>
 </body>
 </html>
