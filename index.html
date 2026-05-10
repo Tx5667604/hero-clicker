@@ -9,268 +9,254 @@
 body { 
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: linear-gradient(180deg, #0d1b2a 0%, #1b2838 50%, #2d1b4e 100%);
-  min-height: 100vh; display: flex; justify-content: center; align-items: center;
+  min-height: 100vh; display: flex; justify-content: center; align-items: flex-start;
   color: #fff; overflow-x: hidden;
 }
-.game { width: 100%; max-width: 420px; padding: 6px; text-align: center; position: relative; min-height: 100vh; display: flex; flex-direction: column; }
+.game { width: 100%; max-width: 420px; padding: 6px; text-align: center; position: relative; min-height: 100vh; }
 
-/* ===== LANGUAGES ===== */
-/* Ukrainian (main) - default */
-/* Ukrainian formal */
-/* Moldovan funny */
-
-/* ===== MENU SCREEN ===== */
+/* MENU */
 .menu-screen {
   position: fixed; top:0; left:0; right:0; bottom:0; z-index: 300;
-  background: linear-gradient(135deg, #0d1b2a 0%, #1a0a2e 100%);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 20px;
+  background: linear-gradient(135deg, #0d1b2a, #1a0a2e);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;
 }
-.menu-title { font-size: 28px; font-weight: 900; margin-bottom: 4px; background: linear-gradient(180deg, #ffd700, #ff6b00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.menu-subtitle { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
-.menu-btn {
-  width: 100%; max-width: 300px; padding: 14px; border-radius: 16px;
-  border: none; font-size: 16px; font-weight: 700; cursor: pointer;
-  margin-bottom: 8px; transition: transform 0.15s;
+.menu-icon { font-size: 56px; margin-bottom: 6px; }
+.menu-title { font-size: 26px; font-weight: 900; margin-bottom: 2px; background: linear-gradient(180deg, #ffd700, #ff6b00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.menu-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 16px; }
+.m-btn {
+  width: 100%; max-width: 300px; padding: 13px; border-radius: 14px; border: none;
+  font-size: 15px; font-weight: 700; cursor: pointer; margin-bottom: 6px; transition: transform .1s;
 }
-.menu-btn:active { transform: scale(0.95); }
-.menu-btn.play { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #1a1a2e; }
-.menu-btn.lang { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
-.menu-btn.donate { background: linear-gradient(135deg, #0088cc, #00a2ff); color: #fff; }
-.menu-btn.stats { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.7); font-size: 14px; }
-.menu-flag { font-size: 20px; margin-right: 6px; }
+.m-btn:active { transform: scale(.95); }
+.m-btn.play { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #1a1a2e; }
+.m-btn.donate { background: linear-gradient(135deg, #0088cc, #00a2ff); color: #fff; }
+.m-btn.lang { background: rgba(255,255,255,0.08); color: #fff; border: 1px solid rgba(255,255,255,0.1); }
+.m-btn.stats { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.6); font-size: 13px; }
 
-/* ===== HEADER / NAV ===== */
-.top-nav {
-  display: flex; justify-content: space-between; align-items: center; padding: 6px 4px;
-  background: rgba(0,0,0,0.3); border-radius: 14px; margin-bottom: 4px;
+/* TOP NAV */
+.top-bar {
+  display: flex; justify-content: space-between; align-items: center; padding: 4px;
+  background: rgba(0,0,0,0.3); border-radius: 12px; margin-bottom: 4px;
 }
-.nav-btn {
-  background: rgba(255,255,255,0.06); border: none; color: #fff; padding: 6px 12px;
-  border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer;
-}
-.nav-btn:active { background: rgba(255,255,255,0.15); }
-.nav-title { font-size: 13px; font-weight: 700; color: #ffd700; }
+.top-btn { background: rgba(255,255,255,0.06); border: none; color: #fff; padding: 5px 10px; border-radius: 8px; font-size: 11px; font-weight: 600; cursor: pointer; }
+.top-btn:active { background: rgba(255,255,255,0.15); }
+.top-title { font-size: 12px; font-weight: 700; color: #ffd700; }
 
-/* ===== COIN DISPLAY ===== */
-.coin-display {
-  background: rgba(0,0,0,0.4); border-radius: 14px; padding: 8px 8px; margin-bottom: 5px;
-  border: 1px solid rgba(255,215,0,0.08); position: relative;
+/* COINS */
+.coin-box {
+  background: rgba(0,0,0,0.4); border-radius: 12px; padding: 6px 8px; margin-bottom: 4px;
+  border: 1px solid rgba(255,215,0,0.06); position: relative;
 }
-.coin-big { font-size: 26px; font-weight: 800; background: linear-gradient(180deg, #ffd700, #ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.coin-sub { font-size: 10px; color: rgba(255,255,255,0.4); }
-.coin-earned { 
-  font-size: 12px; color: #4caf50; font-weight: 600;
+.coin-am { font-size: 24px; font-weight: 800; background: linear-gradient(180deg,#ffd700,#ff8c00); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.coin-ps { font-size: 9px; color: rgba(255,255,255,0.4); }
+.coin-pop {
+  font-size: 11px; color: #4caf50; font-weight: 600;
   position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
-  animation: popIn 0.5s ease-out;
+  animation: cPop .5s ease-out;
 }
-@keyframes popIn {
-  0% { opacity: 0; transform: translateY(10px) scale(0.5); }
-  60% { opacity: 1; transform: translateY(-3px) scale(1.1); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
+@keyframes cPop { 0%{opacity:0;transform:translateY(10px) scale(.5)} 60%{opacity:1;transform:translateY(-3px) scale(1.1)} 100%{opacity:1;transform:translateY(0) scale(1)} }
 
-/* ===== ENEMY ===== */
-.enemy-area { 
-  background: rgba(0,0,0,0.4); border-radius: 16px; padding: 10px 8px; margin-bottom: 5px;
-  border: 1px solid rgba(255,255,255,0.04); flex: 1; min-height: 155px;
+/* LVL PROGRESS */
+.lvl-bar {
+  background: rgba(0,0,0,0.3); border-radius: 8px; padding: 3px 8px; margin-bottom: 4px;
+  display: flex; align-items: center; gap: 6px;
+}
+.lvl-pb { flex:1; height: 4px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+.lvl-pf { height: 100%; background: linear-gradient(90deg,#4fc3f7,#29b6f6); border-radius: 3px; transition: width .3s; }
+.lvl-t { font-size: 8px; color: rgba(255,255,255,0.5); white-space: nowrap; }
+.lvl-r { font-size: 8px; color: #ffd700; font-weight: 600; white-space: nowrap; }
+
+/* ENEMY */
+.enemy-box {
+  background: rgba(0,0,0,0.4); border-radius: 14px; padding: 8px; margin-bottom: 4px;
+  border: 1px solid rgba(255,255,255,0.04); min-height: 140px;
   display: flex; flex-direction: column; justify-content: center;
 }
-.enemy-header { display: flex; justify-content: space-between; align-items: center; }
-.enemy-name { font-size: 13px; font-weight: 700; }
-.enemy-lvl-badge { font-size: 9px; background: rgba(255,0,0,0.2); color: #ff6b6b; padding: 2px 10px; border-radius: 20px; }
-.enemy-hp-bar { height: 12px; background: rgba(255,0,0,0.12); border-radius: 8px; overflow: hidden; margin: 4px 0; }
-.enemy-hp-fill { height: 100%; background: linear-gradient(90deg, #ff1744, #ff5252); border-radius: 8px; transition: width 0.12s; }
-.enemy-hp-text { font-size: 9px; color: rgba(255,255,255,0.4); }
-.enemy-sprite { font-size: 48px; cursor: pointer; transition: transform 0.06s; display: block; margin: 4px auto; }
-.enemy-sprite:active { transform: scale(1.3); }
+.enemy-top { display: flex; justify-content: space-between; }
+.enemy-n { font-size: 12px; font-weight: 700; }
+.enemy-l { font-size: 8px; background: rgba(255,0,0,0.2); color: #ff6b6b; padding: 2px 8px; border-radius: 20px; }
+.enemy-hpb { height: 10px; background: rgba(255,0,0,0.1); border-radius: 6px; overflow: hidden; margin: 3px 0; }
+.enemy-hpf { height: 100%; background: linear-gradient(90deg,#ff1744,#ff5252); border-radius: 6px; transition: width .1s; }
+.enemy-hpt { font-size: 8px; color: rgba(255,255,255,0.4); }
+.enemy-sp { font-size: 44px; cursor: pointer; transition: transform .05s; display: block; margin: 2px auto; }
+.enemy-sp:active { transform: scale(1.35); }
 
-/* ===== STATS ===== */
-.stats-row { display: flex; gap: 3px; margin-bottom: 5px; }
-.stat-box { flex: 1; background: rgba(255,255,255,0.04); border-radius: 10px; padding: 5px 3px; }
-.stat-val { font-size: 13px; font-weight: 700; }
-.stat-label { font-size: 8px; color: rgba(255,255,255,0.35); }
+/* STATS */
+.st-row { display: flex; gap: 3px; margin-bottom: 4px; }
+.st-box { flex:1; background: rgba(255,255,255,0.04); border-radius: 8px; padding: 4px 2px; }
+.st-v { font-size: 12px; font-weight: 700; }
+.st-l { font-size: 7px; color: rgba(255,255,255,0.35); }
 
-/* ===== SHOP ===== */
-.section-title { font-size: 12px; font-weight: 600; margin: 3px 0; color: #ffd700; background: rgba(255,215,0,0.05); border-radius: 8px; padding: 3px; }
-.shop-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 5px; }
-.shop-item {
-  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 10px; padding: 6px 4px; cursor: pointer; transition: all 0.12s;
+/* SHOP TABS */
+.tabs { display: flex; gap: 3px; margin-bottom: 3px; }
+.tab {
+  flex:1; padding: 6px; border-radius: 8px; border: none; font-size: 11px; font-weight: 600;
+  cursor: pointer; transition: all .15s; background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.5);
 }
-.shop-item:active { transform: scale(0.95); background: rgba(255,255,255,0.1); }
-.shop-item .name { font-size: 12px; font-weight: 600; }
-.shop-item .desc { font-size: 8px; color: rgba(255,255,255,0.4); }
-.shop-item .price { font-size: 11px; color: #ffd700; font-weight: 600; }
-.shop-item .lvl { font-size: 8px; color: rgba(255,255,255,0.2); }
+.tab.active { background: rgba(255,215,0,0.15); color: #ffd700; }
 
-/* ===== LEVEL PROGRESS ===== */
-.lvl-progress { 
-  background: rgba(0,0,0,0.3); border-radius: 8px; padding: 4px 8px; margin-bottom: 4px;
-  display: flex; justify-content: space-between; align-items: center; gap: 6px;
+/* SHOP GRID */
+.shop-g { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 4px; }
+.shop-card {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 10px; padding: 5px 4px; cursor: pointer; transition: all .1s;
 }
-.lvl-pbar { flex: 1; height: 5px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
-.lvl-pfill { height: 100%; background: linear-gradient(90deg, #4fc3f7, #29b6f6); border-radius: 4px; transition: width 0.3s; }
-.lvl-txt { font-size: 9px; color: rgba(255,255,255,0.5); white-space: nowrap; }
-.lvl-reward { font-size: 9px; color: #ffd700; font-weight: 600; white-space: nowrap; }
+.shop-card:active { transform: scale(.95); background: rgba(255,255,255,0.1); }
+.shop-card .sn { font-size: 11px; font-weight: 600; }
+.shop-card .sd { font-size: 7px; color: rgba(255,255,255,0.4); }
+.shop-card .sp { font-size: 10px; color: #ffd700; font-weight: 600; }
+.shop-card .sl { font-size: 7px; color: rgba(255,255,255,0.2); }
+.shop-card.locked { opacity: .35; }
 
-/* ===== DONATION / STARS SHOP ===== */
-.stars-shop { margin-top: 4px; }
-.stars-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
-.stars-item {
-  background: linear-gradient(135deg, rgba(0,136,204,0.15), rgba(0,162,255,0.1));
-  border: 1px solid rgba(0,162,255,0.2); border-radius: 12px; padding: 10px 6px;
-  cursor: pointer; transition: all 0.15s;
+/* STARS SHOP */
+.stars-g { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 4px; }
+.star-card {
+  background: linear-gradient(135deg, rgba(0,136,204,0.12), rgba(0,162,255,0.08));
+  border: 1px solid rgba(0,162,255,0.15); border-radius: 10px; padding: 8px 4px;
+  cursor: pointer; transition: all .1s;
 }
-.stars-item:active { transform: scale(0.95); background: rgba(0,136,204,0.3); }
-.stars-item .icon { font-size: 28px; }
-.stars-item .name { font-size: 13px; font-weight: 700; }
-.stars-item .stars-price { font-size: 12px; color: #0088cc; font-weight: 700; }
-.stars-item .desc { font-size: 9px; color: rgba(255,255,255,0.5); }
+.star-card:active { transform: scale(.95); background: rgba(0,136,204,0.25); }
+.star-card .si { font-size: 22px; }
+.star-card .sn { font-size: 12px; font-weight: 700; }
+.star-card .sp { font-size: 11px; color: #0088cc; font-weight: 700; }
+.star-card .sd { font-size: 8px; color: rgba(255,255,255,0.5); }
 
-/* ===== LANGUAGE SELECTOR ===== */
-.lang-overlay {
+/* LANG */
+.lang-scr {
   position: fixed; top:0; left:0; right:0; bottom:0; z-index: 400;
-  background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center;
 }
-.lang-panel {
+.lang-p {
   background: linear-gradient(135deg, #1a1a2e, #2d1b4e);
-  border-radius: 24px; padding: 24px; width: 90%; max-width: 340px;
-  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px; padding: 20px; width: 90%; max-width: 320px;
+  border: 1px solid rgba(255,255,255,0.08);
 }
-.lang-panel h2 { font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #ffd700; }
-.lang-opt {
-  display: flex; align-items: center; gap: 10px; padding: 12px 14px;
-  border-radius: 14px; margin-bottom: 6px; cursor: pointer;
-  background: rgba(255,255,255,0.04); transition: all 0.15s;
+.lang-p h2 { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #ffd700; }
+.lang-o {
+  display: flex; align-items: center; gap: 8px; padding: 10px 12px;
+  border-radius: 12px; margin-bottom: 4px; cursor: pointer;
+  background: rgba(255,255,255,0.04); transition: all .1s;
 }
-.lang-opt:active { background: rgba(255,255,255,0.12); transform: scale(0.97); }
-.lang-opt .flag { font-size: 24px; }
-.lang-opt .name { font-size: 15px; font-weight: 600; }
-.lang-opt .sub { font-size: 11px; color: rgba(255,255,255,0.4); }
-.lang-opt .check { margin-left: auto; font-size: 18px; color: #ffd700; }
-.lang-opt.active { background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.2); }
+.lang-o:active { background: rgba(255,255,255,0.12); transform: scale(.97); }
+.lang-o .fl { font-size: 22px; }
+.lang-o .nm { font-size: 14px; font-weight: 600; }
+.lang-o .sb { font-size: 10px; color: rgba(255,255,255,0.4); }
+.lang-o .ck { margin-left: auto; font-size: 16px; color: #ffd700; }
+.lang-o.active { background: rgba(255,215,0,0.1); border: 1px solid rgba(255,215,0,0.15); }
 
-/* ===== POPUPS ===== */
-.dmg-popup { position: fixed; pointer-events: none; font-weight: 800; animation: floatUp 0.7s ease-out forwards; z-index: 100; }
-@keyframes floatUp {
-  0% { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(-60px) scale(1.15); }
-}
-.coin-fly { position: fixed; pointer-events: none; font-weight: 700; animation: coinUp 0.6s ease-out forwards; z-index: 99; }
-@keyframes coinUp {
-  0% { opacity: 1; transform: translateY(0) scale(1); }
-  100% { opacity: 0; transform: translateY(-45px) scale(0.6); }
-}
-@keyframes enemyDie { 0% { transform: scale(1); opacity:1; } 50% { transform: scale(1.4); opacity:0.5; } 100% { transform: scale(0); opacity:0; } }
-.enemy-die { animation: enemyDie 0.3s ease-out forwards; }
+/* POPUPS */
+.dmg-p { position: fixed; pointer-events: none; font-weight: 800; z-index: 100; animation: flUp .7s ease-out forwards; }
+@keyframes flUp { 0%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(-55px) scale(1.15)} }
+.cf { position: fixed; pointer-events: none; font-weight: 700; z-index: 99; animation: cUp .6s ease-out forwards; }
+@keyframes cUp { 0%{opacity:1;transform:translateY(0) scale(1)} 100%{opacity:0;transform:translateY(-40px) scale(.6)} }
+@keyframes eDie { 0%{transform:scale(1);opacity:1} 50%{transform:scale(1.4);opacity:.5} 100%{transform:scale(0);opacity:0} }
+.e-die { animation: eDie .3s ease-out forwards; }
 
-.ach-popup {
-  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-  background: linear-gradient(135deg, #1a1a2e, #2d1b4e);
-  border: 2px solid #ffd700; border-radius: 20px; padding: 20px 30px;
-  text-align: center; z-index: 200; min-width: 260px;
-  animation: achIn 0.4s ease-out;
+.ach-o {
+  position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.6); z-index: 199;
 }
-@keyframes achIn {
-  0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-  60% { transform: translate(-50%, -50%) scale(1.08); }
-  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+.ach-p {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  background: linear-gradient(135deg,#1a1a2e,#2d1b4e);
+  border: 2px solid #ffd700; border-radius: 18px; padding: 18px 24px;
+  text-align: center; z-index: 200; min-width: 240px;
+  animation: aIn .4s ease-out;
 }
-.ach-overlay { position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.6); z-index: 199; }
-
-/* Scrollbar */
-::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: transparent; }
+@keyframes aIn { 0%{transform:translate(-50%,-50%) scale(0);opacity:0} 60%{transform:translate(-50%,-50%) scale(1.08)} 100%{transform:translate(-50%,-50%) scale(1);opacity:1} }
+::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
 </style>
 </head>
 <body>
 
-<!-- LANGUAGE SELECTOR -->
-<div class="lang-overlay" id="langOverlay" style="display:none">
-  <div class="lang-panel">
-    <h2 id="langTitle">🌍 Оберіть мову</h2>
-    <div class="lang-opt active" data-lang="uk" onclick="setLang('uk')">
-      <span class="flag">🇺🇦</span>
-      <div><div class="name" data-t="langUkr">Українська (звичайна)</div><div class="sub">Для справжніх козаків 🏆</div></div>
-      <span class="check" id="checkUk">✅</span>
+<!-- MENU -->
+<div class="menu-screen" id="menuScr">
+  <div class="menu-icon">⚔️</div>
+  <div class="menu-title" id="mTitle">Геройський Клікер</div>
+  <div class="menu-sub" id="mSub">Ігорьоша рятує школу! 🐸</div>
+  <button class="m-btn play" onclick="hideMenu()" id="mPlay">🎮 ГРАТИ!</button>
+  <button class="m-btn donate" onclick="hideMenu();showStars()" id="mDonate">⭐ Купити зірочки</button>
+  <button class="m-btn lang" onclick="showLang()" id="mLang">🌍 Мова</button>
+  <button class="m-btn stats" onclick="showStats()" id="mStats">📊 Статистика</button>
+  <div style="margin-top:12px;font-size:10px;color:rgba(255,255,255,0.15)" id="mVer">v2.1 — для Ігорьоші ❤️</div>
+</div>
+
+<!-- LANGUAGE -->
+<div class="lang-scr" id="langScr" style="display:none">
+  <div class="lang-p">
+    <h2 id="langTitle">🌍 Мова</h2>
+    <div class="lang-o active" data-l="uk" onclick="setLang('uk')">
+      <span class="fl">🇺🇦</span>
+      <div><div class="nm">Українська</div><div class="sb">Звичайна, для своїх</div></div>
+      <span class="ck" id="ckUk">✅</span>
     </div>
-    <div class="lang-opt" data-lang="ua" onclick="setLang('ua')">
-      <span class="flag">🇺🇦</span>
-      <div><div class="name" data-t="langUa">Українська (літературна)</div><div class="sub">Для інтелігенції 🎩</div></div>
-      <span class="check" id="checkUa"></span>
+    <div class="lang-o" data-l="ua" onclick="setLang('ua')">
+      <span class="fl">🇺🇦</span>
+      <div><div class="nm">Українська (літературна)</div><div class="sb">Культурна, для інтелігенції 🎩</div></div>
+      <span class="ck" id="ckUa"></span>
     </div>
-    <div class="lang-opt" data-lang="md" onclick="setLang('md')">
-      <span class="flag">🦆</span>
-      <div><div class="name" data-t="langMd">Молдовська (справжня!)</div><div class="sub">Для крутих пацанів 🔥</div></div>
-      <span class="check" id="checkMd"></span>
+    <div class="lang-o" data-l="md" onclick="setLang('md')">
+      <span class="fl">🦆</span>
+      <div><div class="nm">Молдовська (справжня!)</div><div class="sb">Для крутих пацанів 🔥</div></div>
+      <span class="ck" id="ckMd"></span>
     </div>
+    <button class="m-btn play" style="margin-top:12px;max-width:100%;padding:10px" onclick="hideLang()">✅ ГОТОВО!</button>
   </div>
 </div>
 
-<!-- MENU SCREEN -->
-<div class="menu-screen" id="menuScreen">
-  <div style="font-size:64px;margin-bottom:8px">⚔️</div>
-  <div class="menu-title" data-t="menuTitle">Геройський Клікер</div>
-  <div class="menu-subtitle" data-t="menuSub">Ігорьоша знову рятує школу! 🐸</div>
-  
-  <button class="menu-btn play" onclick="hideMenu()" data-t="menuPlay">🎮 ГРАТИ!</button>
-  <button class="menu-btn donate" onclick="showStarsShop()" data-t="menuDonate">⭐ Донати (Telegram Stars)</button>
-  <button class="menu-btn lang" onclick="toggleLang()" data-t="menuLang">🌍 Мова</button>
-  <button class="menu-btn stats" onclick="showStats()" data-t="menuStats">📊 Статистика</button>
-  
-  <div style="margin-top:16px; font-size:11px; color:rgba(255,255,255,0.2)" data-t="menuVer">v2.0 — Зроблено з ❤️ для Ігорьоші</div>
-</div>
-
-<!-- MAIN GAME -->
+<!-- GAME -->
 <div class="game" id="gameArea" style="display:none">
-  <div class="top-nav">
-    <button class="nav-btn" onclick="showMenu()" data-t="navMenu">☰ Меню</button>
-    <span class="nav-title" data-t="navTitle">⚔️ Геройський Клікер</span>
-    <button class="nav-btn" onclick="toggleLang()" data-t="navLang">🌍</button>
+  <div class="top-bar">
+    <button class="top-btn" onclick="showMenu()" id="bMenu">☰ Меню</button>
+    <span class="top-title" id="bTitle">⚔️ Геройський Клікер</span>
+    <button class="top-btn" onclick="showLang()" id="bLang">🌍</button>
   </div>
 
-  <div class="coin-display" id="coinDisplay">
-    <div><span class="coin-big" id="coinBig">0</span></div>
-    <div class="coin-sub" data-t="coinSub">🔥 +<span id="coinPerSec">0</span>/сек</div>
-    <div class="coin-earned" id="coinEarned" style="display:none">+0 🪙</div>
+  <div class="coin-box" id="coinBox">
+    <div><span class="coin-am" id="cAm">0</span></div>
+    <div class="coin-ps" id="cPs">🔥 +0/сек</div>
+    <div class="coin-pop" id="cPop" style="display:none">+0 🪙</div>
   </div>
 
-  <div class="lvl-progress">
-    <span class="lvl-txt" id="lvlInfo">0/10</span>
-    <div class="lvl-pbar"><div class="lvl-pfill" id="lvlFill" style="width:0%"></div></div>
-    <span class="lvl-reward" id="lvlReward">🎁 +50</span>
+  <div class="lvl-bar">
+    <span class="lvl-t" id="lvlT">0/10</span>
+    <div class="lvl-pb"><div class="lvl-pf" id="lvlPf" style="width:0%"></div></div>
+    <span class="lvl-r" id="lvlR">🎁 +50</span>
   </div>
 
-  <div class="enemy-area" id="enemyArea">
-    <div class="enemy-header">
-      <span class="enemy-name" id="enemyName">🦹 Хуліган</span>
-      <span class="enemy-lvl-badge" id="enemyLvlBadge">⭐ 1</span>
+  <div class="enemy-box" id="enemyBox">
+    <div class="enemy-top">
+      <span class="enemy-n" id="eN">🦹 Хуліган</span>
+      <span class="enemy-l" id="eL">⭐ 1</span>
     </div>
-    <div class="enemy-hp-bar"><div class="enemy-hp-fill" id="enemyHpFill" style="width:100%"></div></div>
-    <div class="enemy-hp-text" id="enemyHpText">100/100 ❤️</div>
-    <div class="enemy-sprite" id="enemySprite">🦹</div>
+    <div class="enemy-hpb"><div class="enemy-hpf" id="eHpf" style="width:100%"></div></div>
+    <div class="enemy-hpt" id="eHpt">100/100 ❤️</div>
+    <div class="enemy-sp" id="eSp">🦹</div>
   </div>
 
-  <div class="stats-row">
-    <div class="stat-box"><div class="stat-val" id="statAtk">1</div><div class="stat-label" data-t="sAtk">⚔️ Сила</div></div>
-    <div class="stat-box"><div class="stat-val" id="statClick">1</div><div class="stat-label" data-t="sClick">👊 Клік</div></div>
-    <div class="stat-box"><div class="stat-val" id="statCrit">5%</div><div class="stat-label" data-t="sCrit">💥 Крит</div></div>
-    <div class="stat-box"><div class="stat-val" id="statDps">1.0</div><div class="stat-label" data-t="sDps">⚡ DPS</div></div>
-    <div class="stat-box"><div class="stat-val" id="statKills">0</div><div class="stat-label" data-t="sKills">💀 Вбито</div></div>
+  <div class="st-row">
+    <div class="st-box"><div class="st-v" id="sAtk">1</div><div class="st-l" id="lAtk">⚔️ Сила</div></div>
+    <div class="st-box"><div class="st-v" id="sClk">1</div><div class="st-l" id="lClk">👊 Клік</div></div>
+    <div class="st-box"><div class="st-v" id="sCrit">5%</div><div class="st-l" id="lCrit">💥 Крит</div></div>
+    <div class="st-box"><div class="st-v" id="sDps">1.0</div><div class="st-l" id="lDps">⚡ DPS</div></div>
+    <div class="st-box"><div class="st-v" id="sKill">0</div><div class="st-l" id="lKill">💀 Вбито</div></div>
   </div>
 
-  <div class="section-title" id="shopTitle" data-t="shopTitle">🏪 Крамниця</div>
-  <div class="shop-grid" id="shopGrid"></div>
+  <!-- TABS: Зброя | Зірочки -->
+  <div class="tabs">
+    <button class="tab active" id="tabShop" onclick="switchTab('shop')">🛒 Магазин Ярика</button>
+    <button class="tab" id="tabStars" onclick="switchTab('stars')">⭐ Зірочки</button>
+  </div>
 
-  <!-- Stars Shop (hidden by default) -->
-  <div class="section-title stars-shop" id="starsTitle" style="display:none" data-t="starsTitle">⭐ Крамниця Telegram Stars</div>
-  <div class="stars-grid" id="starsGrid" style="display:none"></div>
+  <!-- Магазин Ярика -->
+  <div class="shop-g" id="shopG"></div>
+
+  <!-- Зірочки -->
+  <div class="stars-g" id="starsG" style="display:none"></div>
 </div>
 
 <script>
-// ========== FORMAT ==========
+// ========== ФОРМАТ ==========
 function fmt(n) {
   if (n >= 1e12) return (n/1e12).toFixed(2) + ' трлн';
   if (n >= 1e9) return (n/1e9).toFixed(2) + ' млрд';
@@ -279,421 +265,457 @@ function fmt(n) {
   return Math.floor(n).toString();
 }
 
-// ========== LANGUAGES ==========
+// ========== МОВИ ==========
 const L = {
   uk: {
-    menuTitle: 'Геройський Клікер', menuSub: 'Ігорьоша знову рятує школу! 🐸',
-    menuPlay: '🎮 ГРАТИ!', menuDonate: '⭐ Донати (Telegram Stars)', menuLang: '🌍 Мова', menuStats: '📊 Статистика', menuVer: 'v2.0 — Зроблено з ❤️ для Ігорьоші',
-    navMenu: '☰ Меню', navTitle: '⚔️ Геройський Клікер', navLang: '🌍',
-    coinSub: '🔥 +{0}/сек',
-    sAtk: '⚔️ Сила', sClick: '👊 Клік', sCrit: '💥 Крит', sDps: '⚡ DPS', sKills: '💀 Вбито',
-    shopTitle: '🏪 Крамниця', starsTitle: '⭐ Крамниця Telegram Stars',
-    langTitle: '🌍 Оберіть мову',
-    langUkr: 'Українська (звичайна)', langUa: 'Українська (літературна)', langMd: 'Молдовська (справжня!)',
-    stats_title: '📊 Статистика Ігорьоші',
-    stats_kills: '💀 Всього вбито:', stats_record: '🏆 Рекорд:', stats_coins: '🪙 Всього монет:', stats_dmg: '⚔️ Завдано шкоди:', stats_lvl: '🔰 Макс рівень:', stats_time: '⏱ В грі:',
-    starsShopTitle: '⭐ Купити за Telegram Stars',
-    donate_1: '💎 5000 монет', donate_1d: 'На халяву ✨',
-    donate_2: '🔥 25000 монет', donate_2d: 'Багато цивілей!',
-    donate_3: '💪 Сила +10', donate_3d: 'Назавжди!',
-    donate_4: '⚡ DPS x2', donate_4d: 'На 30 хвилин',
-    donate_5: '👑 ВІП набір', donate_5d: 'Всі бонуси разом!',
-    donate_6: '🤫 Секрет', donate_6d: 'Що ж там?',
-    close: '❌ Закрити',
-    enemy_killed: 'переможено!',
-    lvl_up: '🔰 Новий рівень!',
-    lvl_reach: 'Ігорьоша досяг',
+    mTitle: 'Геройський Клікер', mSub: 'Ігорьоша рятує школу! 🐸',
+    mPlay: '🎮 ГРАТИ!', mDonate: '⭐ Купити зірочки', mLang: '🌍 Мова', mStats: '📊 Статистика', mVer: 'v2.1 — для Ігорьоші ❤️',
+    bMenu: '☰ Меню', bTitle: '⚔️ Геройський Клікер', bLang: '🌍',
+    cPs: '🔥 +{0}/сек',
+    lAtk: '⚔️ Сила', lClk: '👊 Клік', lCrit: '💥 Крит', lDps: '⚡ DPS', lKill: '💀 Вбито',
+    tabShop: '🛒 Магазин Ярика', tabStars: '⭐ Зірочки',
+    langTitle: '🌍 Мова',
+    statsT: '📊 Статистика Ігорьоші',
+    statsK: '💀 Вбито:', statsR: '🏆 Рекорд:', statsC: '🪙 Монет:', statsD: '⚔️ Шкоди:', statsL: '🔰 Рівень:',
+    lvlUp: '🔰 Новий рівень!', lvlReach: 'Ігорьоша досяг',
+    // Shop items
+    si1: '🗡️ Кулак', si1d: 'Сила +1',
+    si2: '🦶 Підніжка', si2d: 'Клік +2',
+    si3: '🎯 Приціл', si3d: 'Крит +2%',
+    si4: '🪙 Копілка', si4d: 'Монети +25%',
+    si5: '⚡ Кросівки', si5d: 'Авто +0.5/с',
+    si6: '💫 Комбо', si6d: 'Подвійна +2%',
+    si7: '🌟 Мега', si7d: 'Кріт х5',
+    si8: '💰 Скарб', si8d: 'Монети х2',
+    // Stars shop
+    st1: '💎 Мішечок', st1d: '5000 монет', st1p: '1 ⭐',
+    st2: '🔥 Вогник', st2d: '25000 монет', st2p: '3 ⭐',
+    st3: '💪 Кач', st3d: 'Сила +10 назавжди', st3p: '5 ⭐',
+    st4: '⚡ Турбо', st4d: 'DPS x2 на 30 хв', st4p: '7 ⭐',
+    st5: '👑 ВІП', st5d: 'Все одразу!', st5p: '10 ⭐',
+    st6: '🤫 Сюрприз', st6d: 'Тільки сьогодні!', st6p: '15 ⭐',
+    bought: '✅ Куплено!',
   },
   ua: {
-    menuTitle: 'Героїчний Клікер', menuSub: 'Ігорьоша знов обороняє школу! 🐸',
-    menuPlay: '🎮 РОЗПОЧАТИ!', menuDonate: '⭐ Підтримка зірками', menuLang: '🌍 Мовні налаштування', menuStats: '📊 Статистичні дані', menuVer: 'v2.0 — Створено з любов\'ю для Ігорьоші',
-    navMenu: '☰ Меню', navTitle: '⚔️ Героїчний Клікер', navLang: '🌍',
-    coinSub: '🔥 +{0}/секунду',
-    sAtk: '⚔️ Міць', sClick: '👊 Дотик', sCrit: '💥 Критичний', sDps: '⚡ За секунду', sKills: '💀 Перемог',
-    shopTitle: '🏪 Крамниця речей', starsTitle: '⭐ Крамниця Telegram Зірок',
-    langTitle: '🌍 Виберіть мову',
-    langUkr: 'Українська (народна)', langUa: 'Українська (літературна)', langMd: 'Молдовська (автентична)',
-    stats_title: '📊 Статистика героя',
-    stats_kills: '💀 Всього перемог:', stats_record: '🏆 Рекордний показник:', stats_coins: '🪙 Монети:', stats_dmg: '⚔️ Всього шкоди:', stats_lvl: '🔰 Найвищий рівень:', stats_time: '⏱ Проведено часу:',
-    starsShopTitle: '⭐ Придбати за Telegram Зірки',
-    donate_1: '💎 5000 монет', donate_1d: 'Безкоштовно ✨',
-    donate_2: '🔥 25000 монет', donate_2d: 'Багато грошей!',
-    donate_3: '💪 Сила +10', donate_3d: 'Назавжди!',
-    donate_4: '⚡ DPS подвоєння', donate_4d: 'На пів години',
-    donate_5: '👑 ВІП набір', donate_5d: 'Все і одразу!',
-    donate_6: '🤫 Таємниця', donate_6d: 'Цікаво...',
-    close: '❌ Завершити',
-    enemy_killed: 'переможений!',
-    lvl_up: '🔰 Новий рівень!',
-    lvl_reach: 'Ігорьоша сягнув',
+    mTitle: 'Героїчний Клікер', mSub: 'Ігорьоша обороняє школу! 🐸',
+    mPlay: '🎮 РОЗПОЧАТИ!', mDonate: '⭐ Придбати зірки', mLang: '🌍 Мова', mStats: '📊 Статистика', mVer: 'v2.1 — для Ігорьоші ❤️',
+    bMenu: '☰ Меню', bTitle: '⚔️ Героїчний Клікер', bLang: '🌍',
+    cPs: '🔥 +{0}/сек',
+    lAtk: '⚔️ Міць', lClk: '👊 Дотик', lCrit: '💥 Критичний', lDps: '⚡ DPS', lKill: '💀 Перемог',
+    tabShop: '🛒 Крамниця', tabStars: '⭐ Зірки',
+    langTitle: '🌍 Мова (виберіть)',
+    statsT: '📊 Статистика',
+    statsK: '💀 Перемог:', statsR: '🏆 Рекорд:', statsC: '🪙 Монет:', statsD: '⚔️ Шкоди:', statsL: '🔰 Рівень:',
+    lvlUp: '🔰 Новий рівень!', lvlReach: 'Ігорьоша сягнув',
+    si1: '🗡️ Меч', si1d: 'Сила +1',
+    si2: '🦶 Підсічка', si2d: 'Дотик +2',
+    si3: '🎯 Пристрілка', si3d: 'Крит +2%',
+    si4: '🪙 Скарбничка', si4d: 'Монети +25%',
+    si5: '⚡ Прискорення', si5d: 'Авто +0.5/с',
+    si6: '💫 Подвійний', si6d: 'Подвійна +2%',
+    si7: '🌟 Мегаудар', si7d: 'Кріт х5',
+    si8: '💰 Багатство', si8d: 'Монети х2',
+    st1: '💎 Гаманець', st1d: '5000 монет', st1p: '1 ⭐',
+    st2: '🔥 Факел', st2d: '25000 монет', st2p: '3 ⭐',
+    st3: '💪 М\'язи', st3d: 'Сила +10', st3p: '5 ⭐',
+    st4: '⚡ Швидкість', st4d: 'DPS x2 30 хв', st4p: '7 ⭐',
+    st5: '👑 ВІП', st5d: 'Весь набір!', st5p: '10 ⭐',
+    st6: '🤫 Секрет', st6d: 'Цікаво...', st6p: '15 ⭐',
+    bought: '✅ Придбано!',
   },
   md: {
-    menuTitle: 'ГЄРОЙСКІЙ КЛЇКЄР', menuSub: 'ЙОГОРЬОША-МАЛАДЄЦ ШКОЛУ СПАСАЄТ! 🐸',
-    menuPlay: '🎮 БАБАХ! ГРАТЬ!', menuDonate: '⭐ КІНУТЬ ДЄНЬКУ НА ЗВЄЗДИ', menuLang: '🌍 ЯЗИК (МАЛЄВАННИЙ)', menuStats: '📊 ШО ТУТ БУЛО?', menuVer: 'v2.0 — ЗРОБЛЄНО ДЛЯ ПАЦАНА ІГОРЬОШІ',
-    navMenu: '☰ НАЗАД', navTitle: '⚔️ ГЄРОЙСКІЙ КЛЇКЄР', navLang: '🌍',
-    coinSub: '🔥 +{0} МОНЄТ/СЄК (НЄ ПАДАЙ!)',
-    sAtk: '⚔️ СІЛА', sClick: '👊 БІЙ', sCrit: '💥 КРІТ (ВАУ!)', sDps: '⚡ ДПС (КРУТО)', sKills: '💀 ТРУПІВ',
-    shopTitle: '🏪 МАГАЗ (ВСЬО ПО 1 ГРН!)', starsTitle: '⭐ ТЄЛЄГРАМ ЗВЄЗДИ (МАМА НЄ ЗНАЄ!)',
-    langTitle: '🌍 ВИБЄРІ ЯЗИК (НУ ВИБЄРІ!)',
-    langUkr: 'УКРИ (ТАК ТРЄБА)', langUa: 'УКРИ КУЛЬТУРНИЇ (ВАУ!)', langMd: 'МОЛДОВАНСКІЙ СПРАВЖНІЙ (МИ ЛУЧШІ!)',
-    stats_title: '📊 ШО НАВОЮВАВ?',
-    stats_kills: '💀 СКОЛЬКА УБІЛ:', stats_record: '🏆 РЕКОРД (КРУТО):', stats_coins: '🪙 БАБЛО:', stats_dmg: '⚔️ НАВАЛЯВ:', stats_lvl: '🔰 ЛЄВЄЛ (ХАРОШ):', stats_time: '⏱ СКОЛЬКА СИДІВ:',
-    starsShopTitle: '⭐ КУПІ ЗА ЗВЄЗДИ (ДАВАЙ ДАВАЙ!)',
-    donate_1: '💎 5000 МОНЄТ', donate_1d: 'ХАЛЯВА ✨',
-    donate_2: '🔥 25000 МОНЄТ', donate_2d: 'ТРІШКИ ГРОШЕЙ!',
-    donate_3: '💪 СІЛА +10', donate_3d: 'НАВСЄГДА!',
-    donate_4: '⚡ ДПС х2', donate_4d: 'НА 30 ХВІЛІН',
-    donate_5: '👑 ВІП (ПАН)', donate_5d: 'ВСЬО В ОДНОМ!',
-    donate_6: '🤫 ТАЙНА', donate_6d: 'ГО ВІДКРИЙ!',
-    close: '❌ ЗАКРОЙ (ПАШОЛ)',
-    enemy_killed: 'ГАТОВО!',
-    lvl_up: '🔰 НОВИЙ ЛЄВЄЛ (ЄЄЄ!)',
-    lvl_reach: 'ІГОРЬОША ДОСТАВ',
+    mTitle: 'ГЄРОЙСКІЙ КЛЇКЄР', mSub: 'ЙОГОРЬОША ШКОЛУ СПАСАЄТ! 🐸',
+    mPlay: '🎮 БАБАХ! ГРАТЬ!', mDonate: '⭐ КУПІ ЗВЄЗДИ', mLang: '🌍 ЯЗИК', mStats: '📊 ШО ТУТ?', mVer: 'v2.1 — ДЛЯ ПАЦАНА ІГОРЬОШІ',
+    bMenu: '☰ НАЗАД', bTitle: '⚔️ ГЄРОЙСКІЙ КЛЇКЄР', bLang: '🌍',
+    cPs: '🔥 +{0} МОНЄТ/СЄК',
+    lAtk: '⚔️ СІЛА', lClk: '👊 БІЙ', lCrit: '💥 КРІТ', lDps: '⚡ ДПС', lKill: '💀 ТРУПІВ',
+    tabShop: '🛒 МАГАЗ ЯРІКА', tabStars: '⭐ ЗВЄЗДИ',
+    langTitle: '🌍 ВИБЄРІ ЯЗИК',
+    statsT: '📊 ШО НАВОЮВАВ?',
+    statsK: '💀 УБІЛ:', statsR: '🏆 РЕКОРД:', statsC: '🪙 БАБЛО:', statsD: '⚔️ НАВАЛЯВ:', statsL: '🔰 ЛЄВЄЛ:',
+    lvlUp: '🔰 НОВИЙ ЛЄВЄЛ!', lvlReach: 'ІГОРЬОША ДОСТАВ',
+    si1: '🗡️ КУЛАК', si1d: 'СІЛА +1',
+    si2: '🦶 ПІДНІЖКА', si2d: 'БІЙ +2',
+    si3: '🎯 ГЛАЗ', si3d: 'КРІТ +2%',
+    si4: '🪙 КОПІЛКА', si4d: 'ГРОШІ +25%',
+    si5: '⚡ КЄДИ', si5d: 'БИСТРІШЕ +0.5',
+    si6: '💫 КОМБО', si6d: 'ДВА РАЗА +2%',
+    si7: '🌟 МЕГА', si7d: 'КРІТ х5 (ВАУ!)',
+    si8: '💰 ДЄНЬКИ', si8d: 'БАБЛО х2',
+    st1: '💎 МЄШОК', st1d: '5000 МОНЄТ', st1p: '1 ⭐',
+    st2: '🔥 АГОНЬ', st2d: '25000 МОНЄТ', st2p: '3 ⭐',
+    st3: '💪 МІШЦИ', st3d: 'СІЛА +10 НАВСЄГДА', st3p: '5 ⭐',
+    st4: '⚡ ТУРБО', st4d: 'ДПС х2 НА 30 ХВІЛІН', st4p: '7 ⭐',
+    st5: '👑 ВІП (ПАН)', st5d: 'ВСЬО В ОДНОМ!', st5p: '10 ⭐',
+    st6: '🤫 ТАЙНА', st6d: 'ГАДАЙ ЩО ТАМ!', st6p: '15 ⭐',
+    bought: '✅ ЄСТЬ!',
   }
 };
 
-let currentLang = 'uk';
+let lang = 'uk';
 
-function t(key, ...args) {
-  let txt = (L[currentLang] && L[currentLang][key]) || (L.uk[key] || key);
+function t(k, ...a) {
+  const txt = (L[lang] && L[lang][k]) || (L.uk[k] || k);
+  if (a.length > 0) return txt.replace('{0}', a[0]);
   return txt;
 }
 
-function updateLangUI() {
-  document.querySelectorAll('[data-t]').forEach(el => {
-    const key = el.dataset.t;
-    let txt = t(key);
-    el.textContent = txt;
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('hcLang', l);
+  document.querySelectorAll('.lang-o').forEach(el => {
+    el.classList.toggle('active', el.dataset.l === l);
+    el.querySelector('.ck').textContent = el.dataset.l === l ? '✅' : '';
   });
+  applyLang();
+}
+
+function applyLang() {
+  const els = {
+    'mTitle':'mTitle','mSub':'mSub','mPlay':'mPlay','mDonate':'mDonate','mLang':'mLang','mStats':'mStats','mVer':'mVer',
+    'bMenu':'bMenu','bTitle':'bTitle','bLang':'bLang',
+    'tabShop':'tabShop','tabStars':'tabStars','langTitle':'langTitle',
+    'lAtk':'lAtk','lClk':'lClk','lCrit':'lCrit','lDps':'lDps','lKill':'lKill',
+  };
+  for (const [k, id] of Object.entries(els)) {
+    document.getElementById(id).textContent = t(k);
+  }
   // Dynamic texts
   updateUI();
-  document.getElementById('langTitle').textContent = t('langTitle');
-  document.querySelectorAll('.lang-opt').forEach(el => {
-    const l = el.dataset.lang;
-    const name = el.querySelector('.name');
-    if (name) name.textContent = t('lang' + l.charAt(0).toUpperCase() + l.slice(1));
-  });
+  renderShop();
+  renderStars();
 }
 
-function setLang(l) {
-  currentLang = l;
-  localStorage.setItem('kvLang', l);
-  document.querySelectorAll('.lang-opt').forEach(el => {
-    el.classList.remove('active');
-    el.querySelector('.check').textContent = '';
-  });
-  document.querySelector('.lang-opt[data-lang="'+l+'"]')?.classList.add('active');
-  document.querySelector('.lang-opt[data-lang="'+l+'"] .check').textContent = '✅';
-  updateLangUI();
+function showLang() {
+  document.getElementById('langScr').style.display = 'flex';
 }
-
-function toggleLang() {
-  const o = document.getElementById('langOverlay');
-  o.style.display = o.style.display === 'none' ? 'flex' : 'none';
+function hideLang() {
+  document.getElementById('langScr').style.display = 'none';
 }
 
 // Load language
-try {
-  const saved = localStorage.getItem('kvLang');
-  if (saved) currentLang = saved;
-} catch(e) {}
+try { const s = localStorage.getItem('hcLang'); if (s) lang = s; } catch(e) {}
 
-// ========== VILLAINS ==========
-const VILLAINS = [
-  { name: '🦹 Хуліган', hp: 50, sprite: '🦹' },
-  { name: '👊 Забіяка', hp: 120, sprite: '👊' },
-  { name: '📱 Телефонний маньяк', hp: 300, sprite: '📱' },
-  { name: '🎒 Шкільний задирака', hp: 700, sprite: '🎒' },
-  { name: '🏏 Хуліган з бітою', hp: 1500, sprite: '🏏' },
-  { name: '🗡️ Гоп-стопник', hp: 3500, sprite: '🗡️' },
-  { name: '🔥 Піроман', hp: 8000, sprite: '🔥' },
-  { name: '💀 Байкер', hp: 18000, sprite: '💀' },
-  { name: '🧪 Божевільний вчитель', hp: 40000, sprite: '🧪' },
-  { name: '🤖 Кібер-хуліган', hp: 90000, sprite: '🤖' },
-  { name: '👾 Ігровий бос', hp: 200000, sprite: '👾' },
-  { name: '🐉 Директор-дракон', hp: 500000, sprite: '🐉' },
-  { name: '👑 Король школи', hp: 1200000, sprite: '👑' },
-  { name: '🌑 Тіньовий завуч', hp: 3000000, sprite: '🌑' },
-  { name: '🌀 Хаос-директор', hp: 8000000, sprite: '🌀' },
-  { name: '☠️ Останній іспит', hp: 20000000, sprite: '☠️' },
-  { name: '💎 Фінальний бос', hp: 50000000, sprite: '💎' },
+// ========== ВОРОГИ ==========
+const V = [
+  { n:'🦹 Хуліган', h:50, s:'🦹' },
+  { n:'👊 Забіяка', h:120, s:'👊' },
+  { n:'📱 Телефонний маньяк', h:300, s:'📱' },
+  { n:'🎒 Шкільний задирака', h:700, s:'🎒' },
+  { n:'🏏 Хуліган з бітою', h:1500, s:'🏏' },
+  { n:'🗡️ Гоп-стопник', h:3500, s:'🗡️' },
+  { n:'🔥 Піроман', h:8000, s:'🔥' },
+  { n:'💀 Байкер', h:18000, s:'💀' },
+  { n:'🧪 Божевільний вчитель', h:40000, s:'🧪' },
+  { n:'🤖 Кібер-хуліган', h:90000, s:'🤖' },
+  { n:'👾 Ігровий бос', h:200000, s:'👾' },
+  { n:'🐉 Директор-дракон', h:500000, s:'🐉' },
+  { n:'👑 Король школи', h:1200000, s:'👑' },
+  { n:'🌑 Тіньовий завуч', h:3000000, s:'🌑' },
+  { n:'🌀 Хаос-директор', h:8000000, s:'🌀' },
+  { n:'☠️ Останній іспит', h:20000000, s:'☠️' },
+  { n:'💎 Фінальний бос', h:50000000, s:'💎' },
 ];
 
-// ========== UPGRADES ==========
-const UPGRADES = [
-  { id:'atk', name:'🗡️ Кулак', desc:['Сила +1','Сила +1','СІЛА +1'], baseCost:10, cm:1.35, max:80, fn:g=>g.pDmg++ },
-  { id:'click', name:'🦶 Підніжка', desc:['Клік +2','Дотик +2','БІЙ +2'], baseCost:25, cm:1.45, max:50, fn:g=>g.cDmg+=2 },
-  { id:'crit', name:'🎯 Точний удар', desc:['Крит +2%','Крит +2%','КРІТ +2%'], baseCost:80, cm:1.5, max:35, fn:g=>g.crit=Math.min(g.crit+0.02,0.8) },
-  { id:'gold', name:'🪙 Кишенькові', desc:['Монети +25%','Монети +25%','ГРОШІ +25%'], baseCost:150, cm:1.6, max:25, fn:g=>g.gMult*=1.25 },
-  { id:'aspd', name:'⚡ Прискорення', desc:['Авто +0.5/с','Авто +0.5/с','ШВИДШЕ +0.5'], baseCost:300, cm:1.7, max:25, fn:g=>g.aSpd+=0.5 },
-  { id:'combo', name:'💫 Комбо', desc:['Подвійна атака +2%','Подвійна +2%','БІЛЬШЕ +2%'], baseCost:500, cm:1.8, max:20, fn:g=>g.combo=Math.min(g.combo+0.02,0.5) },
-  { id:'mega', name:'🌟 Мега', desc:['Кріт х5','Кріт х5','КРІТ х5'], baseCost:2000, cm:2, max:10, fn:g=>g.mega=true },
-  { id:'super', name:'💰 Скарбниця', desc:['Монети х2','Монети х2','БАБЛО х2'], baseCost:10000, cm:2.5, max:8, fn:g=>g.gMult*=2 },
+// ========== ПОКРАЩЕННЯ ==========
+const UP = [
+  { id:'atk', key:'si1', keyd:'si1d', bc:10, cm:1.35, mx:80, fn:g=>{g.pDmg++} },
+  { id:'click', key:'si2', keyd:'si2d', bc:25, cm:1.45, mx:50, fn:g=>{g.cDmg+=2} },
+  { id:'crit', key:'si3', keyd:'si3d', bc:80, cm:1.5, mx:35, fn:g=>{g.crit=Math.min(g.crit+0.02,0.8)} },
+  { id:'gold', key:'si4', keyd:'si4d', bc:150, cm:1.6, mx:25, fn:g=>{g.gMult*=1.25} },
+  { id:'aspd', key:'si5', keyd:'si5d', bc:300, cm:1.7, mx:25, fn:g=>{g.aSpd+=0.5} },
+  { id:'combo', key:'si6', keyd:'si6d', bc:500, cm:1.8, mx:20, fn:g=>{g.combo=Math.min(g.combo+0.02,0.5)} },
+  { id:'mega', key:'si7', keyd:'si7d', bc:2000, cm:2, mx:10, fn:g=>{g.mega=true} },
+  { id:'super', key:'si8', keyd:'si8d', bc:10000, cm:2.5, mx:8, fn:g=>{g.gMult*=2} },
 ];
 
-// ========== STARS SHOP ==========
-const STAR_ITEMS = [
-  { id:'s1', icon:'💎', price:1, fn:g=>g.coins+=5000 },
-  { id:'s2', icon:'🔥', price:3, fn:g=>g.coins+=25000 },
-  { id:'s3', icon:'💪', price:5, fn:g=>{g.pDmg+=10;g.cDmg+=10;} },
-  { id:'s4', icon:'⚡', price:7, fn:g=>{g.aSpdMult=(g.aSpdMult||1)*2; setTimeout(()=>{g.aSpdMult=1;},1800000);} },
-  { id:'s5', icon:'👑', price:10, fn:g=>{g.pDmg+=25;g.cDmg+=25;g.crit=Math.min(g.crit+0.1,0.8);g.gMult*=3;} },
-  { id:'s6', icon:'🤫', price:15, fn:g=>{g.coins+=88888;g.pDmg+=50;g.aSpd+=2;document.body.style.background='linear-gradient(135deg,#ff00ff,#00ffff)'} },
+// ========== ЗІРОЧКИ ==========
+const SI = [
+  { icon:'💎', price:1, fn:g=>{g.coins+=5000} },
+  { icon:'🔥', price:3, fn:g=>{g.coins+=25000} },
+  { icon:'💪', price:5, fn:g=>{g.pDmg+=10;g.cDmg+=10} },
+  { icon:'⚡', price:7, fn:g=>{g.aSpdM=(g.aSpdM||1)*2;setTimeout(()=>{g.aSpdM=1},1800000)} },
+  { icon:'👑', price:10, fn:g=>{g.pDmg+=25;g.cDmg+=25;g.crit=Math.min(g.crit+0.1,0.8);g.gMult*=3} },
+  { icon:'🤫', price:15, fn:g=>{g.coins+=88888;g.pDmg+=50;g.aSpd+=2} },
 ];
 
-// ========== GAME STATE ==========
+// ========== ГРА ==========
 let g;
-function defGame() {
+function newG() {
   return {
     coins:0,kills:0,lvl:1,tDmg:0,best:0,
-    pDmg:1,cDmg:2,crit:0.05,gMult:1,aSpd:1,combo:0,mega:false,aSpdMult:1,
-    up:{},eIdx:0,eHp:50,eMhp:50,startTime:Date.now()
+    pDmg:1,cDmg:2,crit:0.05,gMult:1,aSpd:1,combo:0,mega:false,aSpdM:1,
+    up:{},eIdx:0,eHp:50,eMhp:50
   };
 }
 function loadG() {
-  try{const d=JSON.parse(localStorage.getItem('hClicker3'));if(d&&typeof d.coins=='number'){g=d;return}}catch(e){}
-  g=defGame();
+  try {
+    const d = JSON.parse(localStorage.getItem('hcGame3'));
+    if (d && typeof d.coins === 'number') { g = d; return; }
+  } catch(e) {}
+  g = newG();
 }
+function saveG() {
+  try { localStorage.setItem('hcGame3', JSON.stringify(g)); } catch(e) {}
+}
+
 loadG();
 
 // ========== DOM ==========
-const $=id=>document.getElementById(id);
-const cBig=$('coinBig'),cSub=$('coinPerSec'),cEarn=$('coinEarned');
-const eName=$('enemyName'),eLvl=$('enemyLvlBadge'),eHpFill=$('enemyHpFill'),eHpText=$('enemyHpText'),eSprite=$('enemySprite');
-const sAtk=$('statAtk'),sClick=$('statClick'),sCrit=$('statCrit'),sDps=$('statDps'),sKills=$('statKills');
-const lInfo=$('lvlInfo'),lFill=$('lvlFill'),lReward=$('lvlReward');
-const shopG=$('shopGrid'),starsG=$('starsGrid'),starsT=$('starsTitle');
+const cAm=document.getElementById('cAm'),cPs=document.getElementById('cPs'),cPop=document.getElementById('cPop');
+const eN=document.getElementById('eN'),eL=document.getElementById('eL'),eHpf=document.getElementById('eHpf');
+const eHpt=document.getElementById('eHpt'),eSp=document.getElementById('eSp');
+const sAtk=document.getElementById('sAtk'),sClk=document.getElementById('sClk'),sCrit=document.getElementById('sCrit');
+const sDps=document.getElementById('sDps'),sKill=document.getElementById('sKill');
+const lvlT=document.getElementById('lvlT'),lvlPf=document.getElementById('lvlPf'),lvlR=document.getElementById('lvlR');
+const shopG=document.getElementById('shopG'),starsG=document.getElementById('starsG');
 
-function getV(){let i=g.eIdx;if(i>=VILLAINS.length)i=VILLAINS.length-1;return VILLAINS[i];}
+function getV(){let i=g.eIdx;if(i>=V.length)i=V.length-1;return V[i];}
 
 function spawnE(){
   const v=getV();
   const m=1+g.kills*0.03;
-  g.eMhp=Math.floor(v.hp*m);g.eHp=g.eMhp;
+  g.eMhp=Math.floor(v.h*m);g.eHp=g.eMhp;
   const l=Math.floor(g.kills/5)+1;
-  eName.textContent=v.name;
-  eLvl.textContent='⭐ '+l;
-  eSprite.textContent=v.sprite;
-  eSprite.className='enemy-sprite';
+  eN.textContent=v.n;
+  eL.textContent='⭐ '+l;
+  eSp.textContent=v.s;
+  eSp.className='enemy-sp';
   updE();
 }
 
 function updE(){
   const p=Math.max(0,(g.eHp/g.eMhp)*100);
-  eHpFill.style.width=p+'%';
-  eHpText.textContent=Math.max(0,Math.ceil(g.eHp))+'/'+g.eMhp+' ❤️';
+  eHpf.style.width=p+'%';
+  eHpt.textContent=Math.max(0,Math.ceil(g.eHp))+'/'+g.eMhp+' ❤️';
 }
 
-function dmgPopup(text,x,y,color,size){
-  const el=document.createElement('div');
-  el.className='dmg-popup';el.textContent=text;
-  if(color)el.style.color=color;
-  if(size)el.style.fontSize=size;
-  el.style.left=(x-30)+'px';el.style.top=(y-10)+'px';
-  el.style.fontWeight='800';
-  document.body.appendChild(el);
+function dmgP(txt,x,y,cl,sz){
+  const el=document.createElement('div');el.className='dmg-p';
+  el.textContent=txt;if(cl)el.style.color=cl;
+  if(sz)el.style.fontSize=sz;
+  el.style.left=(x-25)+'px';el.style.top=(y-8)+'px';
+  el.style.fontWeight='800';document.body.appendChild(el);
   setTimeout(()=>el.remove(),700);
 }
 
-function coinFly(x,y,amt){
-  const el=document.createElement('div');
-  el.className='coin-fly';
-  el.textContent='🪙 +'+fmt(amt);
-  el.style.left=(x-25)+'px';el.style.top=(y-10)+'px';
-  el.style.fontSize='15px';el.style.color='#ffd700';
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),600);
+function coinF(x,y,a){
+  const el=document.createElement('div');el.className='cf';
+  el.textContent='🪙 +'+fmt(a);
+  el.style.left=(x-20)+'px';el.style.top=(y-8)+'px';
+  el.style.fontSize='14px';el.style.color='#ffd700';
+  document.body.appendChild(el);setTimeout(()=>el.remove(),600);
 }
 
-function showEarn(amt){
-  const el=cEarn;
-  el.textContent='+'+fmt(amt)+' 🪙';
-  el.style.display='block';el.style.animation='none';
-  void el.offsetWidth;el.style.animation='popIn 0.5s ease-out';
-  setTimeout(()=>{el.style.display='none';},2000);
+function showCoin(a){
+  cPop.textContent='+'+fmt(a)+' 🪙';
+  cPop.style.display='block';cPop.style.animation='none';
+  void cPop.offsetWidth;cPop.style.animation='cPop .5s ease-out';
+  setTimeout(()=>{cPop.style.display='none'},2000);
 }
 
-function getLvlReq(l){return Math.floor(10*Math.pow(1.5,l-1));}
-function getLvlRew(l){return Math.floor(50*Math.pow(1.6,l-1));}
+function lvlReq(l){return Math.floor(10*Math.pow(1.5,l-1));}
+function lvlRew(l){return Math.floor(50*Math.pow(1.6,l-1));}
 
 function updLvl(){
-  const req=getLvlReq(g.lvl);
-  lInfo.textContent=g.kills+'/'+req;
-  lFill.style.width=Math.min(100,(g.kills/req)*100)+'%';
-  lReward.textContent='🎁 +'+fmt(getLvlRew(g.lvl));
-  if(g.kills>=req){
+  const r=lvlReq(g.lvl);
+  lvlT.textContent=g.kills+'/'+r;
+  lvlPf.style.width=Math.min(100,(g.kills/r)*100)+'%';
+  lvlR.textContent='🎁 +'+fmt(lvlRew(g.lvl));
+  if(g.kills>=r){
     g.lvl++;
-    const r=getLvlRew(g.lvl-1);
-    g.coins+=r;
-    achShow('🔰',t('lvl_up'),t('lvl_reach')+' '+g.lvl+'! +'+fmt(r)+' 🪙');
+    const rew=lvlRew(g.lvl-1);
+    g.coins+=rew;
+    ach(t('lvlUp'),t('lvlReach')+' '+g.lvl+'! +'+fmt(rew)+' 🪙');
     saveG();updLvl();
   }
 }
 
-function achShow(icon,title,desc){
-  document.querySelectorAll('.ach-overlay,.ach-popup').forEach(el=>el.remove());
-  const o=document.createElement('div');o.className='ach-overlay';
+function ach(title,desc){
+  document.querySelectorAll('.ach-o,.ach-p').forEach(el=>el.remove());
+  const o=document.createElement('div');o.className='ach-o';
   o.onclick=()=>{o.remove();p.remove()};
   document.body.appendChild(o);
-  const p=document.createElement('div');p.className='ach-popup';
-  p.innerHTML='<div style="font-size:42px">'+icon+'</div><div style="font-size:16px;font-weight:700;color:#ffd700;margin:4px 0">'+title+'</div><div style="font-size:12px;color:rgba(255,255,255,0.7)">'+desc+'</div>';
+  const p=document.createElement('div');p.className='ach-p';
+  p.innerHTML='<div style="font-size:32px;margin-bottom:4px">🏆</div><div style="font-size:15px;font-weight:700;color:#ffd700;margin:3px 0">'+title+'</div><div style="font-size:11px;color:rgba(255,255,255,0.7)">'+desc+'</div>';
   p.onclick=()=>{o.remove();p.remove()};
   document.body.appendChild(p);
   setTimeout(()=>{o.remove();p.remove()},3000);
 }
 
-function dealDmg(dmg,isCrit,isCombo){
+function dealD(dmg,isC,isCb){
   g.eHp-=dmg;g.tDmg+=dmg;
-  const r=eSprite.getBoundingClientRect();
+  const r=eSp.getBoundingClientRect();
   if(!r||!r.width)return;
   const x=r.left+r.width/2-20,y=r.top;
-  let txt='-'+fmt(dmg),clr='#ffd700',sz='18px';
-  if(isCombo){txt='💫 '+txt;clr='#7c4dff';sz='20px'}
-  if(isCrit&&g.mega){txt='🌟 MEGA! '+txt;clr='#ff1744';sz='26px'}
-  else if(isCrit){txt='💥 '+txt;clr='#ff1744';sz='22px'}
-  dmgPopup(txt,x,y,clr,sz);
+  let txt='-'+fmt(dmg),cl='#ffd700',sz='16px';
+  if(isCb){txt='💫 '+txt;cl='#7c4dff';sz='18px'}
+  if(isC&&g.mega){txt='🌟 MEGA! '+txt;cl='#ff1744';sz='24px'}
+  else if(isC){txt='💥 '+txt;cl='#ff1744';sz='20px'}
+  dmgP(txt,x,y,cl,sz);
   if(g.eHp<=0){
     const v=getV();
-    const rew=Math.floor((v.hp*0.2+15)*g.gMult*(1+g.kills*0.02));
+    const rew=Math.floor((v.h*0.2+15)*g.gMult*(1+g.kills*0.02));
     g.coins+=rew;g.kills++;
     if(g.kills>g.best)g.best=g.kills;
-    coinFly(r.left+r.width/2-10,r.top,rew);
-    showEarn(rew);
-    eSprite.className='enemy-sprite enemy-die';
+    coinF(r.left+r.width/2-10,r.top,rew);
+    showCoin(rew);
+    eSp.className='enemy-sp e-die';
     setTimeout(()=>{
-      const mi=Math.min(Math.floor(g.kills/10),VILLAINS.length-1);
+      const mi=Math.min(Math.floor(g.kills/10),V.length-1);
       if(g.eIdx<mi)g.eIdx++;
-      spawnE();updLvl();
+      spawnE();updLvl();saveG();
     },300);
   }
   updE();
 }
 
-function doClick(){
-  let d=g.cDmg+g.pDmg;
-  let c=Math.random()<g.crit;
-  let cb=Math.random()<g.combo;
-  if(c&&g.mega)d*=5;else if(c)d*=3;
-  if(cb)d*=2;
-  dealDmg(d,c,cb);
+function doC() {
+  let d = g.cDmg + g.pDmg;
+  let c = Math.random() < g.crit;
+  let cb = Math.random() < g.combo;
+  if (c && g.mega) d *= 5; else if (c) d *= 3;
+  if (cb) d *= 2;
+  dealD(d, c, cb);
 }
 
-eSprite.addEventListener('click',doClick);
-eSprite.addEventListener('touchstart',e=>{e.preventDefault();doClick()});
+eSp.addEventListener('click', doC);
+eSp.addEventListener('touchstart', e => { e.preventDefault(); doC(); });
 
-// Auto attack
+// Auto
 let la=0;
 function aa(ts){
   if(!la)la=ts;
-  if(ts-la>=1000/(g.aSpd*(g.aSpdMult||1))){dealDmg(g.pDmg,false,false);la=ts;}
+  const spd=g.aSpd*(g.aSpdM||1);
+  if(ts-la>=1000/spd){dealD(g.pDmg,false,false);la=ts;}
   requestAnimationFrame(aa);
 }
 requestAnimationFrame(aa);
 
-// Passive
+// Passive income
 setInterval(()=>{
-  const p=g.pDmg*g.aSpd*0.1*(g.aSpdMult||1);
-  if(p>0){g.coins+=p;saveG();updUI()}
+  const p=g.pDmg*g.aSpd*0.1*(g.aSpdM||1);
+  if(p>0){g.coins+=p;saveG();updateUI()}
 },1000);
 
 // ========== SHOP RENDER ==========
 function renderShop(){
   shopG.innerHTML='';
-  UPGRADES.forEach(u=>{
-    const l=g.up[u.id]||0,c=Math.floor(u.baseCost*Math.pow(u.cm,l)),mx=l>=u.max;
+  UP.forEach(u=>{
+    const l=g.up[u.id]||0,c=Math.floor(u.bc*Math.pow(u.cm,l)),mx=l>=u.mx;
     const d=document.createElement('div');
-    d.className='shop-item'+(mx?' locked':'');
-    const descKey=(currentLang==='md')?2:(currentLang==='ua'?1:0);
-    d.innerHTML='<div class="name">'+u.name+'</div><div class="desc">'+(mx?'✅ MAX':u.desc[descKey])+'</div><div class="price">'+(mx?'✅ MAX':'🪙 '+fmt(c))+'</div><div class="lvl">'+l+'/'+u.max+'</div>';
+    d.className='shop-card'+(mx?' locked':'');
+    d.innerHTML='<div class="sn">'+t(u.key)+'</div><div class="sd">'+(mx?'✅ MAX':t(u.keyd))+'</div><div class="sp">'+(mx?'✅ MAX':'🪙 '+fmt(c))+'</div><div class="sl">'+l+'/'+u.mx+'</div>';
     if(!mx){
-      if(g.coins<c)d.style.opacity='0.35';
+      if(g.coins<c)d.style.opacity='.35';
       d.addEventListener('click',()=>{
-        if(g.coins>=c){g.coins-=c;g.up[u.id]=(g.up[u.id]||0)+1;u.fn(g);saveG();updUI();renderShop();}
+        if(g.coins>=c){g.coins-=c;g.up[u.id]=(g.up[u.id]||0)+1;u.fn(g);saveG();updateUI();renderShop();}
       });
     }
     shopG.appendChild(d);
   });
-  renderStars();
 }
 
 function renderStars(){
   starsG.innerHTML='';
-  STAR_ITEMS.forEach(s=>{
-    const d=document.createElement('div');d.className='stars-item';
-    const descKey=(currentLang==='md')?2:(currentLang==='ua'?1:0);
-    d.innerHTML='<div class="icon">'+s.icon+'</div><div class="name">'+t('donate_'+s.id)+'</div><div class="stars-price">⭐ '+s.price+'</div><div class="desc">'+t('donate_'+s.id+'d')+'</div>';
-    d.addEventListener('click',()=>buyStars(s));
+  SI.forEach((s,i)=>{
+    const d=document.createElement('div');d.className='star-card';
+    const num=i+1;
+    d.innerHTML='<div class="si">'+s.icon+'</div><div class="sn">'+t('st'+num)+'</div><div class="sp">'+t('st'+num+'p')+'</div><div class="sd">'+t('st'+num+'d')+'</div>';
+    d.addEventListener('click',()=>buyS(num,s));
     starsG.appendChild(d);
   });
 }
 
-function buyStars(item){
-  // Try Telegram Stars invoice
+function buyS(num,s){
   if(window.Telegram&&Telegram.WebApp){
     try{
-      Telegram.WebApp.openInvoice(item.price+'',(status)=>{
-        if(status==='paid'){item.fn(g);saveG();updUI();achShow('⭐','Куплено!','Ти отримав бонус!');}
+      Telegram.WebApp.openInvoice(s.price+'',function(status){
+        if(status==='paid'){s.fn(g);saveG();updateUI();ach(t('bought'),t('st'+num)+' — '+t('st'+num+'d'));renderStars();}
       });
       return;
     }catch(e){}
   }
-  // Fallback: just give item for free (demo mode)
-  item.fn(g);saveG();updUI();
-  achShow('⭐','Тест!','⭐ Demo — куплено безкоштовно');
+  // Demo
+  s.fn(g);saveG();updateUI();
+  ach('⭐ Demo',t('st'+num)+' куплено безкоштовно (тест)');
+  renderStars();
 }
 
-function showStarsShop(){
-  const isVisible=starsT.style.display!=='none';
-  starsT.style.display=isVisible?'none':'block';
-  starsG.style.display=isVisible?'none':'grid';
+function showStars(){
+  document.getElementById('tabShop').classList.remove('active');
+  document.getElementById('tabStars').classList.add('active');
+  shopG.style.display='none';
+  starsG.style.display='grid';
+}
+
+function switchTab(t){
+  if(t==='shop'){
+    document.getElementById('tabShop').classList.add('active');
+    document.getElementById('tabStars').classList.remove('active');
+    shopG.style.display='grid';
+    starsG.style.display='none';
+  } else {
+    document.getElementById('tabShop').classList.remove('active');
+    document.getElementById('tabStars').classList.add('active');
+    shopG.style.display='none';
+    starsG.style.display='grid';
+  }
 }
 
 // ========== UI ==========
-function updUI(){
-  cBig.textContent=fmt(g.coins);
-  sAtk.textContent=g.pDmg;
-  sClick.textContent=g.cDmg+g.pDmg;
-  sCrit.textContent=Math.floor(g.crit*100)+'%';
-  sDps.textContent=(g.aSpd*(g.aSpdMult||1)).toFixed(1);
-  sKills.textContent=g.kills;
-  const p=g.pDmg*g.aSpd*0.1*(g.aSpdMult||1);
-  cSub.textContent=fmt(p);
+function updateUI() {
+  cAm.textContent = fmt(g.coins);
+  sAtk.textContent = g.pDmg;
+  sClk.textContent = g.cDmg + g.pDmg;
+  sCrit.textContent = Math.floor(g.crit * 100) + '%';
+  sDps.textContent = (g.aSpd * (g.aSpdM || 1)).toFixed(1);
+  sKill.textContent = g.kills;
+  const p = g.pDmg * g.aSpd * 0.1 * (g.aSpdM || 1);
+  cPs.textContent = t('cPs', fmt(p));
 }
 
 // ========== MENU ==========
-function showMenu(){
-  document.getElementById('menuScreen').style.display='flex';
-  document.getElementById('gameArea').style.display='none';
+function showMenu() {
+  document.getElementById('menuScr').style.display = 'flex';
+  document.getElementById('gameArea').style.display = 'none';
+  applyLang();
 }
-function hideMenu(){
-  document.getElementById('menuScreen').style.display='none';
-  document.getElementById('gameArea').style.display='flex';
-  starsT.style.display='none';starsG.style.display='none';
-  updUI();updLvl();renderShop();
+function hideMenu() {
+  document.getElementById('menuScr').style.display = 'none';
+  document.getElementById('gameArea').style.display = 'block';
+  // Reset to shop tab
+  document.getElementById('tabShop').classList.add('active');
+  document.getElementById('tabStars').classList.remove('active');
+  shopG.style.display = 'grid';
+  starsG.style.display = 'none';
+  updateUI(); updLvl(); renderShop(); renderStars();
 }
 
-function showStats(){
-  const elapsed=Math.floor((Date.now()-g.startTime)/60000);
-  const h=Math.floor(elapsed/60),m=elapsed%60;
-  const msg=t('stats_title')+'\n'+t('stats_kills')+' '+g.kills+'\n'+t('stats_record')+' '+g.best+'\n'+t('stats_coins')+' '+fmt(g.coins)+'\n'+t('stats_dmg')+' '+fmt(g.tDmg)+'\n'+t('stats_lvl')+' '+g.lvl+'\n'+t('stats_time')+' '+h+'г '+m+'хв';
-  achShow('📊',t('stats_title'),msg.replace(/\n/g,'<br>'));
+function showStats() {
+  const msg = t('statsT') + '\n' +
+    t('statsK') + ' ' + g.kills + '\n' +
+    t('statsR') + ' ' + g.best + '\n' +
+    t('statsC') + ' ' + fmt(g.coins) + '\n' +
+    t('statsD') + ' ' + fmt(g.tDmg) + '\n' +
+    t('statsL') + ' ' + g.lvl;
+  ach('📊', msg.replace(/\n/g, '<br>'));
 }
 
 // ========== TELEGRAM ==========
-try{if(window.Telegram&&Telegram.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand()}}catch(e){}
+try { if (window.Telegram && Telegram.WebApp) { Telegram.WebApp.ready(); Telegram.WebApp.expand(); } } catch(e) {}
 
 // ========== INIT ==========
-function saveG(){try{localStorage.setItem('hClicker3',JSON.stringify(g))}catch(e){}}
+setLang(lang);
+spawnE(); renderShop(); renderStars(); updateUI(); updLvl();
 
-spawnE();renderShop();updUI();updLvl();
+setInterval(saveG, 5000);
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) saveG();
+  else { updateUI(); updLvl(); }
+});
 
-// Init lang
-setLang(currentLang);
-
-setInterval(saveG,10000);
-document.addEventListener('visibilitychange',()=>{if(document.hidden)saveG();else{updUI();updLvl()}});
-
-console.log('🐸 Геройський Клікер завантажено!');
+console.log('✅ Геройський Клікер завантажено');
 </script>
 </body>
 </html>
